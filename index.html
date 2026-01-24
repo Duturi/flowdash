@@ -56,8 +56,8 @@
               
               <label name="period"></label>
               <select class="period filter light" name="period">
-                <option value="1일전">1일 전</option>
-                <option value="3일전">3일 전</option>
+                <option value="1일전">전체</option>
+                <option value="3일전">오늘</option>
                 <option value="7일전">7일 전</option>
                 <option value="전체 : 기간" selected>전체 : 기간</option>
               </select>
@@ -93,18 +93,21 @@
                 <span>할 일</span>
                 <div class="count board-count">0</div>
               </div>
+              <ul></ul>
             </div>
             <div class="in-progress-board light">
               <div class="board-text ">
                 <span>진행 중</span>
                 <div class="count board-count">0</div>
               </div>
+              <ul></ul>
             </div>
             <div class="done-board light">
               <div  class="board-text">
                 <span>완료</span>
                 <div class="count board-count">0</div>
-                </div>
+              </div>
+              <ul></ul>
                 </div>
           </section> <!-- boards -->
       </section> <!-- main-wrap -->
@@ -129,6 +132,7 @@
 
   const themeBtn = document.querySelector(".theme-btn");
   const savedTheme = localStorage.getItem("flowdash-theme");
+  const loadTheme = localStorage.setItem("flowdash-theme", "dark");
 
   if (savedTheme === "dark") {
   document.body.classList.add("dark");
