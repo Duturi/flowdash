@@ -4,10 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>2조 ToDoList</title>
-    <link rel="stylesheet" href="./CSS/reset.css">
-    <link rel="stylesheet" href="./CSS/base.css">
-    <link rel="stylesheet" href="./CSS/responsive.css">
-    <link rel="stylesheet" href="./CSS/theme.css">
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/base.css" />
+    <link rel="stylesheet" href="./CSS/responsive.css" />
+    <link rel="stylesheet" href="./CSS/theme.css" />
+    <link rel="stylesheet" href="./CSS/todo-board.css" />
+    <link rel="stylesheet" href="./CSS/components.css" />
+    <title>TEAM2 TodoList</title>
   </head>
   <body>
     <section class="container">
@@ -18,14 +21,16 @@
             <span>오늘 날짜</span>
           </div>
           <button class="theme-btn light">💤</button>
-        </section> <!-- greet-box -->
+        </section>
+        <!-- greet-box -->
         <section class="timer-box">
           <div class="time-hour1 time-box light"></div>
           <div class="time-hour2 time-box light"></div>
           <div class="colon">:</div>
           <div class="time-min1 time-box light"></div>
           <div class="time-min2 time-box light"></div>
-        </section> <!-- timer-box -->
+        </section>
+        <!-- timer-box -->
       </section>
       <section class="category-box">
         <div class="total-tasks category light">
@@ -48,7 +53,8 @@
           <span>Achievement</span>
           <span class="category-count">0</span>
         </div>
-      </section> <!-- category-box -->
+      </section>
+      <!-- category-box -->
       <section class="main-wrap">
           <section class="filter-box light">
             <form class="filter-text-box">
@@ -62,94 +68,121 @@
                 <option value="전체 : 기간" selected>전체 : 기간</option>
               </select>
 
-              <label name="importance"></label>
-              <select class="importance filter light" name="importance">
-                <option value="1순위">1 순위</option>
-                <option value="2순위">2 순위</option>
-                <option value="3순위">3 순위</option>
-                <option value="전체 : 우선순" selected>전체 : 우선순</option>
-              </select>
+            <label name="sorting"></label>
+            <select class="sorting filter light" name="sorting">
+              <option value="1순위">오름차순</option>
+              <option value="2순위">내림차순</option>
+              <option value="정렬 : 오름차순" selected>정렬 : 오름차순</option>
+            </select>
 
-              <label name="sorting"></label>
-              <select class="sorting filter light" name="sorting">
-                <option value="1순위">오름차순</option>
-                <option value="2순위">내림차순</option>
-                <option value="정렬 : 오름차순" selected>정렬 : 오름차순</option>
-              </select>
-              
-              <button class="add-btn light-add-btn">
-                <sapn>+ 새 할 일</sapn>
-              </button>
-            </form>
-          </section> <!-- filter-box -->
-          <section class="sticker-box">
-            <button class="reset light-reset">
-              <span>데이터 초기화</span>
+            <button class="add-btn light-add-btn">
+              <sapn>+ 새 할 일</sapn>
             </button>
-          </section> <!-- sticker-box -->
-          <section class="boards">
-            <div class="todo-board light">
-              <div class="board-text">
-                <span>할 일</span>
-                <div class="count board-count">0</div>
-              </div>
-              <ul></ul>
+          </form>
+        </section>
+        <!-- filter-box -->
+        <section class="sticker-box">
+          <button class="reset light-reset">
+            <span>데이터 초기화</span>
+          </button>
+        </section>
+        <!-- sticker-box -->
+        <section class="boards">
+          <div class="todo-board light">
+            <div class="board-text">
+              <span>할 일</span>
+              <div class="count board-count">0</div>
             </div>
-            <div class="in-progress-board light">
-              <div class="board-text ">
-                <span>진행 중</span>
-                <div class="count board-count">0</div>
-              </div>
-              <ul></ul>
+            <ul class="todo-list-container"></ul>
+          </div>
+          <div class="in-progress-board light">
+            <div class="board-text">
+              <span>진행 중</span>
+              <div class="count board-count">0</div>
             </div>
-            <div class="done-board light">
-              <div  class="board-text">
-                <span>완료</span>
-                <div class="count board-count">0</div>
-              </div>
-              <ul></ul>
-                </div>
-          </section> <!-- boards -->
-      </section> <!-- main-wrap -->
+            <ul class="todo-list-container"></ul>
+          </div>
+          <div class="done-board light">
+            <div class="board-text">
+              <span>완료</span>
+              <div class="count board-count">0</div>
+            </div>
+            <ul class="todo-list-container"></ul>
+          </div>
+        </section>
+        <!-- boards -->
+      </section>
+      <!-- main-wrap -->
     </section>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    function updateClock() {
-      const now = new Date();
+    <hr class="line" />
+    <div class="footer">
+      <p class="footer-comment">&copy; 2026 FlowDash. All rights reserved.</p>
+    </div>
+    <!-- footer -->
+    <div id="todo-modal" class="modal-overlay">
+      <div class="modal-content">
+        <input type="text" id="todo-modal-title" placeholder="텍스트" />
+        <textarea id="todo-modal-desc" placeholder="내용"></textarea>
 
-      const hours = String(now.getHours()).padStart(2, "0");
-      const minutes = String(now.getMinutes()).padStart(2, "0");
+        <div class="todo-modal-buttons">
+          <button id="todo-btn-plus">추가</button>
+          <button id="todo-btn-close">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- todo-modal -->
+    <div id="reset-modal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="reset-modal-text">
+          <h3>삭제 시 모든 정보가 삭제됩니다.</h3>
+          <h3>삭제 하시겠습니까?</h3>
+        </div>
+        <div class="reset-modal-buttons">
+          <button id="reset-btn-clear">삭제</button>
+          <button id="reset-btn-close">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- reset-modal -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function updateClock() {
+          const now = new Date();
 
-      document.querySelector(".time-hour1").textContent = hours[0];
-      document.querySelector(".time-hour2").textContent = hours[1];
-      document.querySelector(".time-min1").textContent = minutes[0];
-      document.querySelector(".time-min2").textContent = minutes[1];
-    }
-    updateClock();
+          const hours = String(now.getHours()).padStart(2, "0");
+          const minutes = String(now.getMinutes()).padStart(2, "0");
 
-    setInterval(updateClock, 1000); 
-  });
+          document.querySelector(".time-hour1").textContent = hours[0];
+          document.querySelector(".time-hour2").textContent = hours[1];
+          document.querySelector(".time-min1").textContent = minutes[0];
+          document.querySelector(".time-min2").textContent = minutes[1];
+        }
+        updateClock();
+
+        setInterval(updateClock, 1000);
+      });
 
   const themeBtn = document.querySelector(".theme-btn");
   const savedTheme = localStorage.getItem("flowdash-theme");
   const loadTheme = localStorage.setItem("flowdash-theme", "dark");
 
-  if (savedTheme === "dark") {
-  document.body.classList.add("dark");
-    themeBtn.textContent = "✨";
-  } else {
-    document.body.classList.remove("dark");
-    themeBtn.textContent = "💤";
-  }
+      if (savedTheme === "dark") {
+        document.body.classList.add("dark");
+        themeBtn.textContent = "✨";
+      } else {
+        document.body.classList.remove("dark");
+        themeBtn.textContent = "💤";
+      }
 
-  themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
+      themeBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark");
 
-    const darkBody = document.body.classList.contains("dark");
-    localStorage.setItem("flowdash-theme", darkBody ? "dark" : "light");
+        const darkBody = document.body.classList.contains("dark");
+        localStorage.setItem("flowdash-theme", darkBody ? "dark" : "light");
 
-    themeBtn.textContent = darkBody ? "✨" : "💤";
-  }); // 다크모드 로컬 스토리지 저장
-</script>
+        themeBtn.textContent = darkBody ? "✨" : "💤";
+      }); // 다크모드 로컬 스토리지 저장
+    </script>
+    <script src="./JS/todo-board.js" defer></script>
   </body>
 </html>
