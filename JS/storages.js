@@ -16,4 +16,4 @@ themeBtn.addEventListener("click", () => {
   localStorage.setItem("flowdash-theme", darkBody ? "dark" : "light");
 
   themeBtn.textContent = darkBody ? "✨" : "💤";
-}); // 다크모드 로컬 스토리지 저장
+}); // 다크모드 로컬 스토리지 저장.
