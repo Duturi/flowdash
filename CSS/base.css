@@ -208,6 +208,8 @@ body {
   font-family: "Pretendard";
 }
 .todo-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
@@ -223,6 +225,8 @@ body {
   font-size: 20px;
 }
 .in-progress-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
@@ -231,6 +235,8 @@ body {
   height: 100%;
 }
 .done-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
