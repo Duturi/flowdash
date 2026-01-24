@@ -56,29 +56,17 @@
       </section>
       <!-- category-box -->
       <section class="main-wrap">
-        <section class="filter-box light">
-          <form class="filter-text-box">
-            <input
-              type="text"
-              class="todo-search light"
-              placeholder="할 일 검색..."
-            />
-
-            <label name="period"></label>
-            <select class="period filter light" name="period">
-              <option value="1일전">1일 전</option>
-              <option value="3일전">3일 전</option>
-              <option value="7일전">7일 전</option>
-              <option value="전체 : 기간" selected>전체 : 기간</option>
-            </select>
-
-            <label name="importance"></label>
-            <select class="importance filter light" name="importance">
-              <option value="1순위">1 순위</option>
-              <option value="2순위">2 순위</option>
-              <option value="3순위">3 순위</option>
-              <option value="전체 : 우선순" selected>전체 : 우선순</option>
-            </select>
+          <section class="filter-box light">
+            <form class="filter-text-box">
+              <input type="text" class="todo-search light" placeholder="할 일 검색..."></input>
+              
+              <label name="period"></label>
+              <select class="period filter light" name="period">
+                <option value="1일전">전체</option>
+                <option value="3일전">오늘</option>
+                <option value="7일전">7일 전</option>
+                <option value="전체 : 기간" selected>전체 : 기간</option>
+              </select>
 
             <label name="sorting"></label>
             <select class="sorting filter light" name="sorting">
@@ -174,8 +162,9 @@
         setInterval(updateClock, 1000);
       });
 
-      const themeBtn = document.querySelector(".theme-btn");
-      const savedTheme = localStorage.getItem("flowdash-theme");
+  const themeBtn = document.querySelector(".theme-btn");
+  const savedTheme = localStorage.getItem("flowdash-theme");
+  const loadTheme = localStorage.setItem("flowdash-theme", "dark");
 
       if (savedTheme === "dark") {
         document.body.classList.add("dark");
