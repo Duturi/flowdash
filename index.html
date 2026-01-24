@@ -3,142 +3,149 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./CSS/reset.css" />
-    <link rel="stylesheet" href="./CSS/base.css" />
-    <title>TEAM2 TodoList</title>
+    <title>2조 ToDoList</title>
+    <link rel="stylesheet" href="./CSS/reset.css">
+    <link rel="stylesheet" href="./CSS/base.css">
+    <link rel="stylesheet" href="./CSS/responsive.css">
+    <link rel="stylesheet" href="./CSS/theme.css">
   </head>
   <body>
-    <section id="container">
-      <header class="head-container">
-        <div class="greet-box">
-          <button class="theme-btn">💤</button>
-          <span class="today">2026.01.21</span>
-          <h1>좋은 오후에요 최우수님</h1>
-        </div>
-
-        <section class="time-box-container">
-          <div class="time-box time-box1"></div>
-          <div class="time-box time-box2"></div>
-
+    <section class="container">
+      <section class="header">
+        <section class="greet-box light">
+          <div class="greet-text">
+            <span>인사 말</span>
+            <span>오늘 날짜</span>
+          </div>
+          <button class="theme-btn light">💤</button>
+        </section> <!-- greet-box -->
+        <section class="timer-box">
+          <div class="time-hour1 time-box light"></div>
+          <div class="time-hour2 time-box light"></div>
           <div class="colon">:</div>
-
-          <div class="time-box time-box3"></div>
-          <div class="time-box time-box4"></div>
-        </section> <!-- 우상단 시간 박스 -->
-      </header> <!-- 좌상단 인사 박스 -->
-
-      <section class="main-container">
-          <section class="category-box">
-            <div class="category total-tasks">
-            <div class="category-text-box">
-              <span>Total Tasks</span>
-              <span class="count">0</span>
-            </div>
-          </div>
-          <div class="category to-do">
-            <div class="category-text-box">
-              <span>To Do</span>
-              <span class="count">0</span>
-            </div>
-          </div>
-          <div class="category in-progress">
-            <div class="category-text-box">
-              <sapn>In Progress</sapn>
-              <span class="count">0</span>
-            </div>
-          </div>
-          <div class="category done">
-            <div class="category-text-box">
-              <span>Done</span>
-              <span class="count">0</span>
-            </div>
-          </div>
-          <div class="category achievement">
-            <div class="category-text-box">
-              <span>Achievement</span>
-              <span class="count">0</span>
-            </div>
-          </div>
-        </section> <!-- 좌측 카테고리 -->
-        <section class="main-wrap">
-          <section class="filter-box">
+          <div class="time-min1 time-box light"></div>
+          <div class="time-min2 time-box light"></div>
+        </section> <!-- timer-box -->
+      </section>
+      <section class="category-box">
+        <div class="total-tasks category light">
+          <span>Total Tasks</span>
+          <span class="category-count">0</span>
+        </div>
+        <div class="to-do category light">
+          <span>To Do</span>
+          <span class="category-count">0</span>
+        </div>
+        <div class="in-progress category light">
+          <span>In Progress</span>
+          <span class="category-count">0</span>
+        </div>
+        <div class="done category light">
+          <span>Done</span>
+          <span class="category-count">0</span>
+        </div>
+        <div class="achievement category light">
+          <span>Achievement</span>
+          <span class="category-count">0</span>
+        </div>
+      </section> <!-- category-box -->
+      <section class="main-wrap">
+          <section class="filter-box light">
             <form class="filter-text-box">
-              <input type="text" class="todo-search" placeholder="할 일 검색..."></input>
-  
+              <input type="text" class="todo-search light" placeholder="할 일 검색..."></input>
+              
               <label name="period"></label>
-              <select class="period filter" name="period">
+              <select class="period filter light" name="period">
                 <option value="1일전">1일 전</option>
                 <option value="3일전">3일 전</option>
                 <option value="7일전">7일 전</option>
                 <option value="전체 : 기간" selected>전체 : 기간</option>
               </select>
-  
+
               <label name="importance"></label>
-              <select class="importance filter" name="importance">
+              <select class="importance filter light" name="importance">
                 <option value="1순위">1 순위</option>
                 <option value="2순위">2 순위</option>
                 <option value="3순위">3 순위</option>
                 <option value="전체 : 우선순" selected>전체 : 우선순</option>
               </select>
-  
+
               <label name="sorting"></label>
-              <select class="sorting filter" name="sorting">
+              <select class="sorting filter light" name="sorting">
                 <option value="1순위">오름차순</option>
                 <option value="2순위">내림차순</option>
                 <option value="정렬 : 오름차순" selected>정렬 : 오름차순</option>
               </select>
-  
-              <button class="add-btn">
+              
+              <button class="add-btn light-add-btn">
                 <sapn>+ 새 할 일</sapn>
               </button>
             </form>
           </section> <!-- filter-box -->
           <section class="sticker-box">
-            <button class="reset">
-              <!-- 여기 전체 기간 전체 우선순 전체 오름차순 라벨이 들어갈 자리 -->
-              <sapn>데이터 초기화</sapn>
+            <button class="reset light-reset">
+              <span>데이터 초기화</span>
             </button>
           </section> <!-- sticker-box -->
-          <section class="board-box">
-            <div class="board todo-board">
+          <section class="boards">
+            <div class="todo-board light">
               <div class="board-text">
                 <span>할 일</span>
-                <div class="board-count todo-board-count">0</div>
+                <div class="count board-count">0</div>
               </div>
-            </div> <!-- board todo-board -->
-            <div class="board in-progress-board">
-              <div class="board-text">
+            </div>
+            <div class="in-progress-board light">
+              <div class="board-text ">
                 <span>진행 중</span>
-                <div class="board-count in-progress-board-count">0</div>
+                <div class="count board-count">0</div>
               </div>
-            </div> <!-- board in-progress-board -->
-            <div class="board done-board">
-              <div class="board-text">
+            </div>
+            <div class="done-board light">
+              <div  class="board-text">
                 <span>완료</span>
-                <div class="board-count done-board-count">0</div>
-              </div>
-            </div><!-- board done-board -->
-          </section> <!-- board-box -->
-        </section> <!-- main-wrap -->
-      </section> <!-- main-container -->
-    </section> <!-- container -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        function updateClock() {
-          const now = new Date();
+                <div class="count board-count">0</div>
+                </div>
+                </div>
+          </section> <!-- boards -->
+      </section> <!-- main-wrap -->
+    </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    function updateClock() {
+      const now = new Date();
 
-          const hours = String(now.getHours()).padStart(2, "0");
-          const minutes = String(now.getMinutes()).padStart(2, "0");
+      const hours = String(now.getHours()).padStart(2, "0");
+      const minutes = String(now.getMinutes()).padStart(2, "0");
 
-          document.querySelector(".time-box1").textContent = hours[0];
-          document.querySelector(".time-box2").textContent = hours[1];
-          document.querySelector(".time-box3").textContent = minutes[0];
-          document.querySelector(".time-box4").textContent = minutes[1];
-        }
-        updateClock();
+      document.querySelector(".time-hour1").textContent = hours[0];
+      document.querySelector(".time-hour2").textContent = hours[1];
+      document.querySelector(".time-min1").textContent = minutes[0];
+      document.querySelector(".time-min2").textContent = minutes[1];
+    }
+    updateClock();
 
-        setInterval(updateClock, 1000);
-      });
-    </script>
+    setInterval(updateClock, 1000); 
+  });
+
+  const themeBtn = document.querySelector(".theme-btn");
+  const savedTheme = localStorage.getItem("flowdash-theme");
+
+  if (savedTheme === "dark") {
+  document.body.classList.add("dark");
+    themeBtn.textContent = "✨";
+  } else {
+    document.body.classList.remove("dark");
+    themeBtn.textContent = "💤";
+  }
+
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+
+    const darkBody = document.body.classList.contains("dark");
+    localStorage.setItem("flowdash-theme", darkBody ? "dark" : "light");
+
+    themeBtn.textContent = darkBody ? "✨" : "💤";
+  }); // 다크모드 로컬 스토리지 저장
+</script>
   </body>
 </html>
