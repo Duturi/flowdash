@@ -250,3 +250,14 @@ body {
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   border-radius: 50%;
 }
+.line {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-top: 1px solid #000;
+  margin-top: 50px;
+}
+.footer-comment {
+  text-align: center;
+  font-size: 13px;
+  height: 72px;
+}
