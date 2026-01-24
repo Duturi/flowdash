@@ -1,7 +1,7 @@
-const todoInput = document.querySelector("#todo-modal-desc");
+const todoInput = document.querySelector(".todo-search");
 const addBtn = document.querySelector(".add-btn");
 const todoListContainer = document.querySelector(".todo-list-container");
-const todoCount = document.querySelector(".todo-board-count");
+const todoCount = document.querySelector(".count.board-count");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
@@ -43,21 +43,17 @@ function render() {
 }
 
 // 4. 할 일 추가
-function addTodo() {
+function addTodo(e) {
+  e.preventDefault();
+
   const text = todoInput.value.trim();
 
-  // if (!text) {
-  //   alert("할 일을 입력해주세요!");
-  //   return;
-  // }
-
-  const todos = loadTodos();
-  todos.push(text);
-  saveTodos(todos);
-
-  todoInput.value = "";
-  render();
-  console.log(`[Add] "${text}" 추가됨`);
+  if (text !== "") {
+    todos.push(text);
+    saveTodo(todos);
+    todoInput.value = "";
+    render();
+  }
 }
 
 function deleteTodo(index) {
@@ -91,14 +87,3 @@ document.addEventListener("click", (e) => {
     todoModal.style.display = "none";
   }
 });
-
-// const resetBtn = document.querySelector(".reset");
-
-// function resetBtn() {
-//   if (confirm("정말 모든 할 일을 삭제하시겠습니까?")) {
-//     localStorage.removeItem(TODO_KEY);
-//     render();
-//     console.log("[Clear] 전체 삭제됨");
-//   }
-// }
-// clearBtn.addEventListener("click", resetBtn);
