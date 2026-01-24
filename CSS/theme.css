@@ -1,0 +1,60 @@
+body {
+  background-color: #f9f5ea;
+  color: #0c0c0c;
+}
+.light {
+  background-color: #fafafa;
+  border: 1px solid #d9cebb;
+  box-shadow: 1px 1px 1px 1px #d9cebb;
+  color: #0c0c0c;
+}
+
+.light-add-btn {
+  background-color: #0c0c0c;
+  border: 1px solid #d9cebb;
+  box-shadow: 1px 1px 1px 1px #d9cebb;
+  color: #fafafa;
+}
+
+.light-reset {
+  background-color: #fafafa;
+  border: 1px solid #d9cebb;
+  box-shadow: 1px 1px 1px 1px #d9cebb;
+  color: red;
+}
+
+.dark {
+  background-color: #212121;
+  color: #fafafa;
+}
+
+.dark .light {
+  background-color: #0c0c0c;
+  border: 1px solid #0c0c0c;
+  box-shadow: 1px 1px 1px 1px #555555;
+  color: #fafafa;
+}
+
+.dark .light-add-btn {
+  background-color: #fafafa;
+  border: 1px solid #555555;
+  color: #0c0c0c;
+}
+
+.dark .light-reset {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: red;
+  box-shadow: 1px 1px 1px 1px #555555;
+}
+
+.dark input,
+.dark select {
+  background-color: #0c0c0c;
+  border: 1px solid #fafafa;
+  color: #fafafa;
+}
+
+.dark .colon {
+  color: #fafafa;
+}
