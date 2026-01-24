@@ -1,8 +1,14 @@
 @font-face {
   font-family: "Pretendard";
+<<<<<<< HEAD
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2")
     format("woff2");
   font-weight: 700;
+=======
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2")
+    format("woff2");
+  font-weight: 800;
+>>>>>>> 98973b0 ( &copy (카피라이터) 구분선 스타일 작성)
   font-display: swap;
 }
 * {
@@ -13,11 +19,15 @@ body {
   margin: 0 auto;
   background-color: #f9f5ea;
 }
+<<<<<<< HEAD
 .container {
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
   padding: 20px;
+=======
+.head-container {
+>>>>>>> 98973b0 ( &copy (카피라이터) 구분선 스타일 작성)
   width: 100%;
 }
 .header {
@@ -46,7 +56,39 @@ body {
   border-radius: 50%;
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
 }
+<<<<<<< HEAD
 .greet-text {
+=======
+.time-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex: 1;
+}
+.time-box {
+  flex-grow: 1;
+  flex-basis: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* min-width: 150px; */
+  height: 100%;
+  background-color: #fafafa;
+  border-radius: 30px;
+  border: 1px solid #d9cebb;
+  font-size: 100px;
+  font-family: "Chonburi";
+  box-shadow: 1px 1px 1px 1px #d9cebb;
+}
+.colon {
+  font-family: "Chonburi";
+  min-width: 30px;
+  height: 120px;
+  font-size: 100px;
+}
+.category-box {
+>>>>>>> 98973b0 ( &copy (카피라이터) 구분선 스타일 작성)
   display: flex;
   flex-direction: column;
   font-family: "Pretendard";
@@ -249,4 +291,15 @@ body {
   /* border: 1px solid #d9cebb; */
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   border-radius: 50%;
+}
+.line {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-top: 1px solid #000;
+  margin-top: 50px;
+}
+.footer-comment {
+  text-align: center;
+  font-size: 13px;
+  height: 72px;
 }
