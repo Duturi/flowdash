@@ -122,5 +122,22 @@ closeResetBtn.addEventListener("click", () => {
   resetModal.style.display = "none";
 });
 clearBtn.addEventListener("click", clearAllData);
-
 render();
+
+const sortBtn = document.querySelector("#sort-asc-btn");
+const sortText = document.querySelector(".sorting-btn");
+
+let ascending = true;
+sortBtn.onclick = () => {
+  ascending = !ascending;
+
+  todos.sort((a, b) =>
+    ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title),
+  );
+  sortText.textContent = ascending ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
+
+  render();
+  console.log(
+    ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
+  );
+};
