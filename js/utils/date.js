@@ -6,7 +6,7 @@ export const getGreetingMessage = () => {
   return "안녕하세요";
 };
 
-export const getTodayDateString = () => {
+export const getFormatDate = () => {
   const d = new Date();
   const year = d.getFullYear();
   const month = d.getMonth() + 1;
