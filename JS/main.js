@@ -1,12 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // 설정 및 기본값
-  const STORAGE_KEY = "flowdash-nickname";
-  const DEFAULT_NAME = "FlowDash";
-
   const greetBox = document.querySelector(".greet-text");
-  const spans = greetBox.querySelectorAll("span");
-  const greetingEl = spans[0];
-  const dateEl = spans[1];
+  const greetingEl = greetBox.querySelector(":first-child");
+  const dateEl = greetBox.querySelector(":last-child");
 
   // 시간대별 인사말 로직
   const getGreetingMessage = () => {
@@ -17,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return "안녕하세요";
   };
 
-  // 날짜 포맷 로직
+  // 날짜 로직
   const DateText = () => {
     const now = new Date();
     const year = now.getFullYear();
@@ -30,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     greetingEl.textContent = getGreetingMessage();
     DateText();
 
-    let savedName = localStorage.getItem(STORAGE_KEY) || DEFAULT_NAME;
+    let savedName = localStorage.getItem("flowdash-nickname") || "FlowDash";
     const nicknameEl = document.createElement("span");
     nicknameEl.className = "nickname-text";
     nicknameEl.textContent = `, ${savedName}님`;
@@ -38,39 +33,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 인라인 수정
     nicknameEl.addEventListener("click", () => {
-      if (nicknameEl.contentEditable === "true") return;
+      const myName = localStorage.getItem("flowdash-nickname") || "FlowDash";
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = myName;
+      input.className = "nickname-edit-input";
 
-      const pureName = nicknameEl.textContent
-        .replace(", ", "")
-        .replace("님", "");
-      nicknameEl.textContent = pureName;
+      nicknameEl.textContent = "";
+      nicknameEl.after(input);
+      input.focus();
 
-      nicknameEl.contentEditable = "true";
-      nicknameEl.focus();
+      const save = () => {
+        let newName = input.value.trim() || "FlowDash";
+        localStorage.setItem("flowdash-nickname", newName);
+
+        nicknameEl.textContent = `, ${newName}님`;
+        nicknameEl.style.display = "inline";
+        input.remove();
+      };
+
+      // 엔터 키
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          save();
+        }
+      });
+      input.addEventListener("blur", save);
     });
-
-    // 저장 로직
-    const save = () => {
-      if (nicknameEl.contentEditable !== "true") return;
-
-      let newName = nicknameEl.textContent.trim();
-
-      if (!newName) {
-        newName = localStorage.getItem(STORAGE_KEY) || DEFAULT_NAME;
-      }
-
-      localStorage.setItem(STORAGE_KEY, newName);
-      nicknameEl.textContent = `, ${newName}님`;
-      nicknameEl.contentEditable = "false";
-    };
-
-    nicknameEl.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        save();
-      }
-    });
-    nicknameEl.addEventListener("Enter", save);
   };
 
   // 5. 실행!
