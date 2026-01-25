@@ -56,6 +56,10 @@ body {
   display: flex;
   flex-direction: column;
   font-family: "Pretendard";
+  gap: 10px;
+}
+.today-date {
+  font-size: 20px;
 }
 .timer-box {
   display: flex;
@@ -136,6 +140,7 @@ body {
   /* border: 1px solid #d9cebb; */
   border-radius: 16px;
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
+  font-family: "Pretendard";
 }
 .period {
   display: flex;
@@ -146,6 +151,7 @@ body {
   /* border: 1px solid #d9cebb; */
   border-radius: 16px;
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
+  font-family: "Pretendard";
 }
 .importance {
   display: flex;
@@ -156,6 +162,7 @@ body {
   /* border: 1px solid #d9cebb; */
   border-radius: 16px;
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
+  font-family: "Pretendard";
 }
 .sorting {
   display: flex;
@@ -166,6 +173,16 @@ body {
   /* border: 1px solid #d9cebb; */
   border-radius: 16px;
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
+}
+.sorting-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 130px;
+  min-height: 45px;
+  cursor: pointer;
+  border-radius: 16px;
+  font-size: 15px;
 }
 .add-btn {
   display: flex;
