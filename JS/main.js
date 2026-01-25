@@ -40,7 +40,9 @@ document.addEventListener("DOMContentLoaded", () => {
     nicknameEl.addEventListener("click", () => {
       if (nicknameEl.contentEditable === "true") return;
 
-      const pureName = nicknameEl.textContent.replace("님", "");
+      const pureName = nicknameEl.textContent
+        .replace(", ", "")
+        .replace("님", "");
       nicknameEl.textContent = pureName;
 
       nicknameEl.contentEditable = "true";
