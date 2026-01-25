@@ -214,6 +214,8 @@ body {
   font-family: "Pretendard";
 }
 .todo-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
@@ -229,6 +231,8 @@ body {
   font-size: 20px;
 }
 .in-progress-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
@@ -237,6 +241,8 @@ body {
   height: 100%;
 }
 .done-board {
+  display: flex;
+  flex-direction: column;
   padding: 20px;
   /* background-color: #fafafa; */
   /* border: 1px solid #d9cebb; */
@@ -255,4 +261,15 @@ body {
   /* border: 1px solid #d9cebb; */
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   border-radius: 50%;
+}
+.line {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  border-top: 1px solid #000;
+  margin-top: 50px;
+}
+.footer-comment {
+  text-align: center;
+  font-size: 13px;
+  height: 72px;
 }

@@ -1,0 +1,31 @@
+.todo-board {
+  display: flex;
+  flex-direction: column;
+}
+.todo-list-container {
+  margin: 10px 0px 0px 10px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.todo-item {
+  width: 300px;
+  height: 40px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  border: 1px solid #78a73a;
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+}
+button {
+  cursor: pointer;
+}
+.del-btn {
+  color: red;
+  border: 1px solid red;
+  width: 35px;
+  height: 37px;
+  border-radius: 8px;
+  text-align: center;
+}
