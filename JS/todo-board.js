@@ -6,7 +6,8 @@ const closeBtn = document.querySelector("#todo-btn-close");
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
 const todoListContainer = document.querySelector(".todo-list-container");
-const todoCount = document.querySelector(".count.board-count");
+const todoCount = document.querySelector(".board-count");
+const countTotalToDo = document.querySelector(".category-count-to-do");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
@@ -29,15 +30,24 @@ function render() {
 
     li.innerHTML = `
       <div class="todo-info">
-        <div class="todo-item-title"><h3>${todo.title}</h3></div>
+        <div class="todo-item-title">
+          <button class="importance-btn">1순위</button>
+          <h3>${todo.title}</h3>
+        </div>
         <div class="todo-item-desc">${todo.desc}</div>
+        <div class="status-btn-box">
+          <button class="status">할 일</button>
+          <button class="status">진행 중</button>
+          <button class="status">완료</button>
+          <button class="del-btn status" onclick="deleteTodo(${index})">삭제</button> 
+        </div>
       </div>
-      <button class="del-btn" onclick="deleteTodo(${index})">X</button>
     `;
     todoListContainer.appendChild(li);
   });
 
   todoCount.innerText = todos.length;
+  countTotalToDo.innerText = todos.length;
   console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
 }
 
