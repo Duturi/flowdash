@@ -50,3 +50,45 @@ body {
 .dark .colon {
   color: #fafafa;
 }
+.dark .modal-content {
+  background-color: #212121;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
+.dark #todo-btn-plus {
+  background-color: #79b3ff;
+  border: 1px solid #555555;
+  color: #0c0c0c;
+}
+.dark #todo-btn-close {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
+.dark #todo-modal-title {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
+.dark #todo-modal-desc {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
+.dark .reset-modal-text {
+  color: #fafafa;
+}
+.dark #reset-btn-close {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
+.dark .inportance-btn {
+  background-color: #0c0c0c;
+  color: #fafafa;
+}
+.dark .todo-item {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}

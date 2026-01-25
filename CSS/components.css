@@ -13,29 +13,33 @@
   height: 40px;
   border-radius: 25px;
   margin-bottom: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9cebb;
   text-align: center;
+  background-color: #fafafa;
+  font-family: "pretendard";
 }
 #todo-modal-desc {
   width: 350px;
   height: 250px;
   border-radius: 20px;
   margin-bottom: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9cebb;
   text-align: left;
   padding: 13px;
   box-sizing: border-box;
   resize: none;
   font-weight: 600;
+  font-family: "pretendard";
 }
 #todo-modal-desc::placeholder {
   text-align: center;
   line-height: 220px;
 }
-.modal-content {
+.modal-reset-content {
   width: 400px;
   border-radius: 30px;
-  border: 2px solid black;
+  border: 2px solid #d9cebb;
+  background-color: #f9f5ea;
   padding: 15px;
   position: absolute;
   top: 50%;
@@ -46,9 +50,19 @@
   flex-direction: column;
   align-items: center;
 }
-#reset-modal .modal-content {
-  width: 350px;
-  height: 200px;
+.modal-todo-content {
+  min-width: 400px;
+  border-radius: 30px;
+  border: 2px solid #d9cebb;
+  background-color: #f9f5ea;
+  padding: 15px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .modal-overlay.active {
@@ -63,10 +77,12 @@
   width: 350px;
   height: 30px;
   border-radius: 15px;
-  border: 1px solid black;
-  margin-bottom: 15px;
+  border: 1px solid #d9cebb;
+  margin: 15px 0px;
   text-align: center;
-  background-color: white;
+  background-color: #79b3ff;
+  color: #0c0c0c;
+  font-family: "pretendard";
 }
 #todo-btn-plus:hover {
   background-color: rgb(213, 245, 255);
@@ -75,10 +91,12 @@
   width: 350px;
   height: 30px;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9cebb;
   text-align: center;
   margin-bottom: 15px;
-  background-color: white;
+  background-color: #fafafa;
+  color: #0c0c0c;
+  font-family: "pretendard";
 }
 #todo-btn-close:hover {
   background-color: rgb(245, 206, 213);
@@ -87,31 +105,94 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: "pretendard";
 }
 
 .reset-modal-text {
   padding: 20px;
+  color: #0c0c0c;
+  text-align: center;
+  line-height: 25px;
 }
 #reset-btn-clear {
   width: 250px;
   height: 30px;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9cebb;
   text-align: center;
   margin-bottom: 15px;
-  background-color: white;
+  background-color: #ff7d7d;
+  color: #0c0c0c;
 }
 #reset-btn-close {
   width: 250px;
   height: 30px;
   border-radius: 15px;
-  border: 1px solid black;
+  border: 1px solid #d9cebb;
   text-align: center;
-  background-color: white;
+  background-color: #fafafa;
+  color: #0c0c0c;
 }
-#reset-btn-clear:hover {
-  background-color: rgb(213, 245, 255);
+.inportance-btn-box {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  padding-right: 15px;
 }
-#reset-btn-close:hover {
-  background-color: rgb(245, 206, 213);
+.inportance-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 80px;
+  background-color: #fafafa;
+  min-height: 30px;
+  font-family: "pretendard";
+  border-radius: 30px;
+}
+.first {
+  border: 1px solid #ff0000;
+}
+.second {
+  border: 1px solid #f5af19;
+}
+.third {
+  border: 1px solid #7279ff;
+}
+.todo-item {
+  display: flex;
+  min-width: 100%;
+  min-height: 180px;
+  background-color: #fafafa;
+  border: 1px solid #d9cebb;
+  color: #0c0c0c;
+  border-radius: 30px;
+  padding: 20px;
+  text-align: right;
+}
+.todo-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+.todo-item-title {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #0c0c0c;
+  padding-bottom: 5px;
+}
+.status-btn-box {
+  display: flex;
+  justify-content: space-between;
+}
+.status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 55px;
+  height: 30px;
+  border-radius: 30px;
+  border: 1px solid #d9cebb;
 }

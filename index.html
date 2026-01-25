@@ -16,8 +16,8 @@
       <section class="header">
         <section class="greet-box light">
           <div class="greet-text">
-            <span>인사 말</span>
-            <span>오늘 날짜</span>
+            <span>OOO님 좋은 00이에요</span>
+            <span class="today-date">오늘 날짜</span>
           </div>
           <button class="theme-btn light">💤</button>
         </section>
@@ -34,23 +34,23 @@
       <section class="category-box">
         <div class="total-tasks category light">
           <span>Total Tasks</span>
-          <span class="category-count">0</span>
+          <span class="category-count-total-tasks category-count">0</span>
         </div>
         <div class="to-do category light">
           <span>To Do</span>
-          <span class="category-count">0</span>
+          <span class="category-count-to-do category-count">0</span>
         </div>
         <div class="in-progress category light">
           <span>In Progress</span>
-          <span class="category-count">0</span>
+          <span class="category-count-in-progress category-count">0</span>
         </div>
         <div class="done category light">
           <span>Done</span>
-          <span class="category-count">0</span>
+          <span class="category-count-done category-count">0</span>
         </div>
         <div class="achievement category light">
           <span>Achievement</span>
-          <span class="category-count">0</span>
+          <span class="category-count-achievement category-count">0</span>
         </div>
       </section>
       <!-- category-box -->
@@ -65,18 +65,23 @@
 
             <label name="period"></label>
             <select class="period filter light" name="period">
-              <option value="1일전">전체</option>
+              <option value="1일전" selected>전체</option>
               <option value="3일전">오늘</option>
               <option value="7일전">7일 전</option>
-              <option value="전체 : 기간" selected>전체 : 기간</option>
+            </select>
+
+            <label name="importance"></label>
+            <select class="importance filter light" name="importance">
+              <option value="1순위">1 순위</option>
+              <option value="2순위">2 순위</option>
+              <option value="3순위">3 순위</option>
+              <option value="전체 : 우선순" selected>전체 : 우선순</option>
             </select>
 
             <label name="sorting"></label>
-            <select class="sorting filter light" name="sorting">
-              <option value="1순위">오름차순</option>
-              <option value="2순위">내림차순</option>
-              <option value="정렬 : 오름차순" selected>정렬 : 오름차순</option>
-            </select>
+            <button id="sort-asc-btn" class="sorting-btn light">
+              <span>정렬 : ↑ 오름차순</span>
+            </button>
 
             <button class="add-btn light-add-btn">
               <sapn>+ 새 할 일</sapn>
@@ -123,10 +128,14 @@
     </div>
     <!-- footer -->
     <div id="todo-modal" class="modal-overlay">
-      <div class="modal-content">
-        <input type="text" id="todo-modal-title" placeholder="텍스트" />
+      <div class="modal-todo-content light">
+        <input type="text" id="todo-modal-title" placeholder="제목" />
         <textarea id="todo-modal-desc" placeholder="내용"></textarea>
-
+        <section class="inportance-btn-box">
+          <button class="first inportance-btn">1순위</button>
+          <button class="second inportance-btn">2순위</button>
+          <button class="third inportance-btn">3순위</button>
+        </section>
         <div class="todo-modal-buttons">
           <button id="todo-btn-plus">추가</button>
           <button id="todo-btn-close">취소</button>
@@ -135,7 +144,7 @@
     </div>
     <!-- todo-modal -->
     <div id="reset-modal" class="modal-overlay">
-      <div class="modal-content">
+      <div class="modal-reset-content light">
         <div class="reset-modal-text">
           <h3>삭제 시 모든 정보가 삭제됩니다.</h3>
           <h3>삭제 하시겠습니까?</h3>
@@ -187,5 +196,6 @@
       }); // 다크모드 로컬 스토리지 저장
     </script>
     <script src="./JS/todo-board.js" defer></script>
+    <script type="module" src="./JS/main.js"></script>
   </body>
 </html>
