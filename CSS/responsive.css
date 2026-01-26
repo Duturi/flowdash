@@ -9,7 +9,7 @@
     font-size: 20px;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 1199px) {
   .greet-box {
     font-size: 25px;
   }
@@ -54,7 +54,7 @@
     grid-column: 1/3;
   }
 }
-@media (max-width: 390px) {
+@media (max-width: 767px) {
   .greet-box {
     font-size: 20px;
   }

@@ -6,8 +6,6 @@ const closeBtn = document.querySelector("#todo-btn-close");
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
 const todoListContainer = document.querySelector(".todo-list-container");
-
-const todoCount = document.querySelector(".board-count");
 const countTotalToDo = document.querySelector(".category-count-to-do");
 const countTotalInProgress = document.querySelector(
   ".category-count-in-progress",
@@ -201,9 +199,58 @@ sortBtn.onclick = () => {
 const todoItem = document.querySelector(".todo-item");
 const changeModal = document.querySelector("#change-modal");
 const changeModalCancle = document.querySelector(".change-modal-cancle");
-todoListContainer.addEventListener("click", () => {
+const todoModalTitle = document.querySelector("#todo-modal-title");
+const todoModalDesc = document.querySelector("#todo-modal-desc");
+
+todoListContainer.addEventListener("click", (e) => {
   changeModal.style.display = "flex";
 });
 changeModalCancle.addEventListener("click", () => {
   changeModal.style.display = "none";
 });
+
+const period = document.querySelector("#period");
+const stickerlist = document.querySelector(".sticker-list");
+const importance = document.querySelector("#importance");
+
+// 카테고리 보드별 카운트 숫자 증가
+let todosStatus = [{ status: "todo" }, { status: "doing" }, { status: "done" }]; // 나중에 todo 리스트 객체 추가되면 그 값 참조
+
+const countTotalTasks = document.querySelector(".category-count-total-tasks");
+const countToDo = document.querySelector(".category-count-to-do");
+const countDoing = document.querySelector(".category-count-in-progress");
+const countDone = document.querySelector(".category-count-done");
+const countAchievement = document.querySelector(".category-count-achievement");
+
+const boardCountTodo = document.querySelector(".board-count-todo");
+const boardCountDoing = document.querySelector(".board-count-doing");
+const boardCountDone = document.querySelector(".board-count-done");
+
+let todoCounts = todosStatus.filter((t) => t.status === "todo").length;
+let doingCounts = todosStatus.filter((t) => t.status === "doing").length;
+let doneCounts = todosStatus.filter((t) => t.status === "done").length;
+let achievementCounts = (countDone / countTotalTasks) * 100;
+
+const totalCounts = todoCounts + doingCounts + doneCounts;
+
+countTotalTasks.textContent = totalCounts;
+countToDo.textContent = todoCounts;
+boardCountTodo.textContent = todoCounts;
+
+countDoing.textContent = doingCounts;
+boardCountDoing.textContent = doingCounts;
+
+countDone.textContent = doneCounts;
+boardCountDone.textContent = doneCounts;
+
+function achievementValue() {
+  let percent = 0;
+
+  if (totalCounts > 0) {
+    percent = (doneCounts / totalCounts) * 100;
+  }
+
+  countAchievement.textContent = Math.floor(percent) + "%";
+}
+
+achievementValue();

@@ -1,6 +1,5 @@
 const themeBtn = document.querySelector(".theme-btn");
 const savedTheme = localStorage.getItem("flowdash-theme");
-const loadTheme = localStorage.setItem("flowdash-theme", "dark");
 
 if (savedTheme === "dark") {
   document.body.classList.add("dark");

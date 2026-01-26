@@ -210,11 +210,14 @@ body {
 .sticker-box {
   height: 50px;
   display: flex;
-  justify-content: space-between;
+  gap: 20px;
   align-items: center;
   font-family: "Pretendard";
+  position: relative;
 }
 .reset {
+  position: absolute;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -293,4 +296,8 @@ body {
   text-align: center;
   font-size: 13px;
   height: 72px;
+}
+.sticker-list {
+  display: flex;
+  gap: 20px;
 }
