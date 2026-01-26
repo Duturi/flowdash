@@ -1,3 +1,6 @@
+const period = document.querySelector("#period");
+const stickerlist = document.querySelector(".sticker-list");
+const importance = document.querySelector("#importance");
 let filterState = {
   period: null,
   importance: null,
@@ -53,6 +56,7 @@ importance.addEventListener("change", () => {
 });
 
 function updateSortUi() {
+  const sortBtn = document.querySelector("#sort-asc-btn");
   const text = sortBtn.querySelector(".sort-text");
   text.textContent =
     filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";

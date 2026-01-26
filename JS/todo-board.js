@@ -70,10 +70,10 @@ function render() {
   });
 
   // 각 보드 별 카운트 증가
-  document.querySelector(".todo-board .board-count").innerText = todoCountNum;
-  document.querySelector(".in-progress-board .board-count").innerText =
-    doingCountNum;
-  document.querySelector(".done-board .board-count").innerText = doneCountNum;
+  // document.querySelector(".todo-board .board-count").innerText = todoCountNum;
+  // document.querySelector(".in-progress-board .board-count").innerText =
+  //   doingCountNum;
+  // document.querySelector(".done-board .board-count").innerText = doneCountNum;
 
   // 카테고리 박스의 To Do 카운트 숫자
   countTotalToDo.innerText = todoCountNum;
@@ -209,12 +209,8 @@ changeModalCancle.addEventListener("click", () => {
   changeModal.style.display = "none";
 });
 
-const period = document.querySelector("#period");
-const stickerlist = document.querySelector(".sticker-list");
-const importance = document.querySelector("#importance");
-
 // 카테고리 보드별 카운트 숫자 증가
-let todosStatus = [{ status: "todo" }, { status: "doing" }, { status: "done" }]; // 나중에 todo 리스트 객체 추가되면 그 값 참조
+// let todosStatus = [{ status: "todo" }, { status: "doing" }, { status: "done" }]; // 나중에 todo 리스트 객체 추가되면 그 값 참조
 
 const countTotalTasks = document.querySelector(".category-count-total-tasks");
 const countToDo = document.querySelector(".category-count-to-do");
@@ -254,3 +250,9 @@ function achievementValue() {
 }
 
 achievementValue();
+
+// 보드 별로 이동 우선순위 상태값
+// 새 하링ㄹ 추가할때 우선순위 누르면 그 상태로 값 적용
+// 할 일 검색 = 할 일 검색 input.value = filter로 각 보드에서 찾아야함
+// 기간 = 할 일 생성 시간으로 부터 오늘 7일전 (필터)
+// 정렬 = 제목 기준으로(todo-title).value? 값을 비교 차순대로 랜더..
