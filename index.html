@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="./CSS/theme.css" />
     <link rel="stylesheet" href="./CSS/todo-board.css" />
     <link rel="stylesheet" href="./CSS/components.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chonburi&family=Newsreader:ital,opsz,wght@0,6..72,700;1,6..72,700&display=swap" rel="stylesheet">
     <title>TEAM2 TodoList</title>
   </head>
   <body>
@@ -57,20 +60,24 @@
       </section>
       <!-- category-box -->
       <section class="main-wrap">
-        <section class="filter-box light">
-          <form class="filter-text-box">
-            <input
-              type="text"
-              class="todo-search light"
-              placeholder="할 일 검색..."
-            />
+          <section class="filter-box light">
+            <form class="filter-text-box">
+              <input type="text" class="todo-search light" placeholder="할 일 검색..."></input>
+              
+              <label for="period"></label>
+              <select id="period" class="period filter light" name="period">
+                <option class="period-value-all" value="전체" selected>전체</option>
+                <option class="period-value-today" value="오늘">오늘</option>
+                <option class="period-value-7day" value="7일전">7일 전</option>
+              </select>
 
-            <label for="period"></label>
-            <select id="period" class="period filter light" name="period">
-              <option value="1일전" selected>전체</option>
-              <option value="3일전">오늘</option>
-              <option value="7일전">7일 전</option>
-            </select>
+              <label for="importance"></label>
+              <select id="importance" class="importance filter light" name="importance">
+                <option value="전체 : 우선순" selected>전체 : 우선순</option>
+                <option value="높음">높음</option>
+                <option value="중간">중간</option>
+                <option value="낮음">낮음</option>
+              </select>
 
             <label for="importance"></label>
             <select
@@ -96,6 +103,7 @@
         </section>
         <!-- filter-box -->
         <section class="sticker-box">
+          <section class="sticker-list"></section>
           <button id="resetBtn" class="reset light-reset">
             <span>데이터 초기화</span>
           </button>
@@ -105,21 +113,21 @@
           <div class="todo-board light">
             <div class="board-text">
               <span>할 일</span>
-              <div class="count board-count">0</div>
+              <div class="count board-count-todo">0</div>
             </div>
             <ul class="todo-list-container"></ul>
           </div>
           <div class="in-progress-board light">
             <div class="board-text">
               <span>진행 중</span>
-              <div class="count board-count">0</div>
+              <div class="count board-count-doing">0</div>
             </div>
             <ul class="todo-list-container"></ul>
           </div>
           <div class="done-board light">
             <div class="board-text">
               <span>완료</span>
-              <div class="count board-count">0</div>
+              <div class="count board-count-done">0</div>
             </div>
             <ul class="todo-list-container"></ul>
           </div>
@@ -245,29 +253,10 @@
 
         setInterval(updateClock, 1000);
       });
-
-      const themeBtn = document.querySelector(".theme-btn");
-      const savedTheme = localStorage.getItem("flowdash-theme");
-      const loadTheme = localStorage.setItem("flowdash-theme", "dark");
-
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark");
-        themeBtn.textContent = "✨";
-      } else {
-        document.body.classList.remove("dark");
-        themeBtn.textContent = "💤";
-      }
-
-      themeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark");
-
-        const darkBody = document.body.classList.contains("dark");
-        localStorage.setItem("flowdash-theme", darkBody ? "dark" : "light");
-
-        themeBtn.textContent = darkBody ? "✨" : "💤";
-      }); // 다크모드 로컬 스토리지 저장
-    </script>
+      </script>
+    <script src="./JS/storages.js" defer></script>
     <script src="./JS/todo-board.js" defer></script>
     <script type="module" src="./JS/main.js"></script>
+    <script src="./JS/filter-sticker.js" defer></script>
   </body>
 </html>

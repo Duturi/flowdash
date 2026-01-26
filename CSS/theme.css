@@ -92,3 +92,8 @@ body {
   border: 1px solid #555555;
   color: #fafafa;
 }
+.dark .display-flex {
+  background-color: #0c0c0c;
+  border: 1px solid #555555;
+  color: #fafafa;
+}
