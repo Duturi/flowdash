@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const greetBox = document.querySelector(".greet-text");
-  const greetingEl = greetBox.querySelector(":first-child");
-  const dateEl = greetBox.querySelector(":last-child");
+  const [greetingEl, dateEl] = greetBox.querySelectorAll("span");
 
   // 시간대별 인사말 로직
   const getGreetingMessage = () => {
@@ -24,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const setup = () => {
     greetingEl.textContent = getGreetingMessage();
     DateText();
-
     let savedName = localStorage.getItem("flowdash-nickname") || "FlowDash";
     const nicknameEl = document.createElement("span");
     nicknameEl.className = "nickname-text";
@@ -35,11 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     nicknameEl.addEventListener("click", () => {
       const myName = localStorage.getItem("flowdash-nickname") || "FlowDash";
       const input = document.createElement("input");
+
       input.type = "text";
       input.value = myName;
       input.className = "nickname-edit-input";
 
-      nicknameEl.textContent = "";
+      nicknameEl.style.display = "none";
       nicknameEl.after(input);
       input.focus();
 
@@ -48,10 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("flowdash-nickname", newName);
 
         nicknameEl.textContent = `, ${newName}님`;
+        nicknameEl.style.display = "inline";
         input.remove();
       };
 
-      // 엔터 키
       input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
           e.preventDefault();
@@ -62,6 +61,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   };
 
-  // 5. 실행!
   setup();
 });
