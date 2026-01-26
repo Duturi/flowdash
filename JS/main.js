@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
       input.style.fontSize = "30px";
       input.style.fontWeight = "bold";
       input.size = myName.length;
-      input.style.padding = "0";
       input.addEventListener("input", () => {
         input.size = input.value.length;
       });
