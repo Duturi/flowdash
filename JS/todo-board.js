@@ -11,6 +11,7 @@ const countTotalInProgress = document.querySelector(
   ".category-count-in-progress",
 );
 const countTotalDone = document.querySelector(".category-count-done");
+const countTotlaTasks = document.querySelector(".category-count-total-tasks");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
@@ -38,6 +39,7 @@ function render() {
   let todoCountNum = 0;
   let doingCountNum = 0;
   let doneCountNum = 0;
+  let totalTasksCountNum = 0;
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
@@ -70,10 +72,12 @@ function render() {
   });
 
   // 각 보드 별 카운트 증가
-  // document.querySelector(".todo-board .board-count").innerText = todoCountNum;
-  // document.querySelector(".in-progress-board .board-count").innerText =
-  //   doingCountNum;
-  // document.querySelector(".done-board .board-count").innerText = doneCountNum;
+  document.querySelector(".todo-board .board-count").innerText = todoCountNum;
+  document.querySelector(".in-progress-board .board-count").innerText =
+    doingCountNum;
+  document.querySelector(".done-board .board-count").innerText = doneCountNum;
+  document.querySelector(".total-tasks .category-count").innerText =
+    totalTasksCountNum;
 
   // 카테고리 박스의 To Do 카운트 숫자
   countTotalToDo.innerText = todoCountNum;
@@ -81,6 +85,9 @@ function render() {
   countTotalInProgress.innerText = doingCountNum;
   // 카테고리 박스의 Done 카운트 숫자
   countTotalDone.innerText = doneCountNum;
+
+  // 카테고르 박스의 Total Tasks 카운트 숫자
+  countTotlaTasks.innerText = todos.length;
 
   console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
 }
@@ -103,7 +110,7 @@ function addTodo() {
     alert("제목을 입력해주세요!");
     return;
   }
-
+  // todo 객체
   const now = Date.now();
   const date = new Date();
   const statusValue = document.querySelector("#status-modal").value;
@@ -155,7 +162,7 @@ document.addEventListener("DOMContentLoaded", () => {
   todos = loadTodos();
   render();
 });
-
+// 초기화 버튼
 const resetBtn = document.querySelector("#resetBtn");
 const resetModal = document.querySelector("#reset-modal");
 const clearBtn = document.querySelector("#reset-btn-clear");
@@ -179,6 +186,7 @@ closeResetBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", clearAllData);
 render();
 
+// 오름차순, 내림차순 정렬
 const sortBtn = document.querySelector("#sort-asc-btn");
 const sortText = document.querySelector(".sorting-btn");
 
@@ -196,6 +204,8 @@ sortBtn.onclick = () => {
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );
 };
+
+// 수정 모달
 const todoItem = document.querySelector(".todo-item");
 const changeModal = document.querySelector("#change-modal");
 const changeModalCancle = document.querySelector(".change-modal-cancle");
@@ -212,10 +222,11 @@ changeModalCancle.addEventListener("click", () => {
 // 카테고리 보드별 카운트 숫자 증가
 // let todosStatus = [{ status: "todo" }, { status: "doing" }, { status: "done" }]; // 나중에 todo 리스트 객체 추가되면 그 값 참조
 
-const countTotalTasks = document.querySelector(".category-count-total-tasks");
-const countToDo = document.querySelector(".category-count-to-do");
-const countDoing = document.querySelector(".category-count-in-progress");
-const countDone = document.querySelector(".category-count-done");
+// 위에 선언 되어 있어서 일단 주석
+// const countTotalTasks = document.querySelector(".category-count-total-tasks");
+// const countToDo = document.querySelector(".category-count-to-do");
+// const countDoing = document.querySelector(".category-count-in-progress");
+// const countDone = document.querySelector(".category-count-done");
 const countAchievement = document.querySelector(".category-count-achievement");
 
 const boardCountTodo = document.querySelector(".board-count-todo");
