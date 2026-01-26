@@ -76,12 +76,10 @@
                 <option value="전체 : 우선순" selected>전체 : 우선순</option>
               </select>
 
-              <!-- <label for="sorting"></label> -->
-              <!-- <select class="sorting filter light" name="sorting"> -->
-                <!-- <option value="1순위">오름차순</option>
-                <option value="2순위">내림차순</option> -->
-                <button class ="sorting-btn light">정렬 : 오름차순</button>
-              </select>
+              <label name="sorting"></label>
+            <button type="button" id="sort-asc-btn" class="sorting-btn light">
+              <span class="sort-text">정렬 : ↑ 오름차순</span>
+            </button>
 
               <button class="add-btn light-add-btn">
                 <sapn>+ 새 할 일</sapn>
@@ -132,9 +130,9 @@
         <input type="text" id="todo-modal-title" placeholder="제목" />
         <textarea id="todo-modal-desc" placeholder="내용"></textarea>
         <section class="inportance-btn-box">
-          <button class="first inportance-btn">1순위</button>
-          <button class="second inportance-btn">2순위</button>
-          <button class="third inportance-btn">3순위</button>
+          <button class="first inportance-btn">높음</button>
+          <button class="second inportance-btn">중간</button>
+          <button class="third inportance-btn">낮음</button>
         </section>
         <div class="todo-modal-buttons">
           <button id="todo-btn-plus">추가</button>
