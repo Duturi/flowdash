@@ -6,8 +6,13 @@ const closeBtn = document.querySelector("#todo-btn-close");
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
 const todoListContainer = document.querySelector(".todo-list-container");
+
 const todoCount = document.querySelector(".board-count");
 const countTotalToDo = document.querySelector(".category-count-to-do");
+const countTotalInProgress = document.querySelector(
+  ".category-count-in-progress",
+);
+const countTotalDone = document.querySelector(".category-count-done");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
@@ -22,7 +27,19 @@ function saveTodos() {
 }
 
 function render() {
-  todoListContainer.innerHTML = "";
+  const todoBoard = document.querySelector(".todo-board .todo-list-container");
+  const doingBoard = document.querySelector(
+    ".in-progress-board .todo-list-container",
+  );
+  const doneBoard = document.querySelector(".done-board .todo-list-container");
+
+  if (todoBoard) todoBoard.innerHTML = "";
+  if (doingBoard) doingBoard.innerHTML = "";
+  if (doneBoard) doneBoard.innerHTML = "";
+
+  let todoCountNum = 0;
+  let doingCountNum = 0;
+  let doneCountNum = 0;
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
@@ -35,16 +52,38 @@ function render() {
       <h3 class="todo-title">${todo.title}</h3>
       </div>
       <div class="todo-item-desc">${todo.desc}</div>
+      <small style="color: #5f6f81; font-size: 0.8rem;">
+      ${todo.createdAt}</small>
       <div class="del-btn-box">
       <button class="del-btn status" onclick="deleteTodo(${index})">X</button> 
       </div>
         </div>
         `;
-    todoListContainer.appendChild(li);
+    if (todo.status === "todo") {
+      todoBoard?.appendChild(li);
+      todoCountNum++;
+    } else if (todo.status === "doing") {
+      doingBoard?.appendChild(li);
+      doingCountNum++;
+    } else if (todo.status === "done") {
+      doneBoard?.appendChild(li);
+      doneCountNum++;
+    }
   });
 
-  todoCount.innerText = todos.length;
-  countTotalToDo.innerText = todos.length;
+  // 각 보드 별 카운트 증가
+  document.querySelector(".todo-board .board-count").innerText = todoCountNum;
+  document.querySelector(".in-progress-board .board-count").innerText =
+    doingCountNum;
+  document.querySelector(".done-board .board-count").innerText = doneCountNum;
+
+  // 카테고리 박스의 To Do 카운트 숫자
+  countTotalToDo.innerText = todoCountNum;
+  // 카테고리 박스의 In Progress 카운트 숫자
+  countTotalInProgress.innerText = doingCountNum;
+  // 카테고리 박스의 Done 카운트 숫자
+  countTotalDone.innerText = doneCountNum;
+
   console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
 }
 
@@ -67,7 +106,28 @@ function addTodo() {
     return;
   }
 
-  const newTodo = { title, desc };
+  const now = Date.now();
+  const date = new Date();
+  const statusValue = document.querySelector("#status-modal").value;
+  const priorityValue = document.querySelector(".importance-btn-box").value;
+  const number = date.toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+  const newTodo = {
+    id: now,
+    title: title,
+    desc: desc,
+    status: statusValue,
+    priority: priorityValue,
+    createdAt: number,
+    updatedAt: null,
+    completedAt: null,
+  };
   todos.push(newTodo);
 
   saveTodos();
