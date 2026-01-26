@@ -29,20 +29,17 @@ function render() {
     li.className = "todo-item";
 
     li.innerHTML = `
-      <div class="todo-info">
-        <div class="todo-item-title">
-          <button class="importance-btn">1순위</button>
-          <h3>${todo.title}</h3>
-        </div>
-        <div class="todo-item-desc">${todo.desc}</div>
-        <div class="status-btn-box">
-          <button class="status">할 일</button>
-          <button class="status">진행 중</button>
-          <button class="status">완료</button>
-          <button class="del-btn status" onclick="deleteTodo(${index})">삭제</button> 
-        </div>
+    <div class="todo-info">
+    <div class="todo-item-title">
+    <button class="importance-btn">높음</button>
+      <h3 class="todo-title">${todo.title}</h3>
       </div>
-    `;
+      <div class="todo-item-desc">${todo.desc}</div>
+      <div class="del-btn-box">
+      <button class="del-btn status" onclick="deleteTodo(${index})">X</button> 
+      </div>
+        </div>
+        `;
     todoListContainer.appendChild(li);
   });
 
@@ -141,3 +138,12 @@ sortBtn.onclick = () => {
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );
 };
+const todoItem = document.querySelector(".todo-item");
+const changeModal = document.querySelector("#change-modal");
+const changeModalCancle = document.querySelector(".change-modal-cancle");
+todoListContainer.addEventListener("click", () => {
+  changeModal.style.display = "flex";
+});
+changeModalCancle.addEventListener("click", () => {
+  changeModal.style.display = "none";
+});

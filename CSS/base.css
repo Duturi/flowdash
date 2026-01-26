@@ -37,9 +37,12 @@ body {
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 117px;
 }
+.nickname-text {
+  font-size: 30px;
+}
 /* 날짜만 작게 조절 */
 .greet-text span:last-child {
-  font-size: 16px;
+  /* font-size: 16px; */
   font-weight: 400;
   margin-top: 5px;
 }
@@ -175,6 +178,7 @@ body {
   /* box-shadow: 1px 1px 1px 1px #d9cebb; */
 }
 .sorting-btn {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;

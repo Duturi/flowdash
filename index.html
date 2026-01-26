@@ -16,8 +16,10 @@
       <section class="header">
         <section class="greet-box light">
           <div class="greet-text">
-            <span>OOO님 좋은 00이에요</span>
-            <span class="today-date">오늘 날짜</span>
+            <div>
+              <span>OOO님 좋은 00이에요</span>
+            </div>
+            <span class="today-date"></span>
           </div>
           <button class="theme-btn light">💤</button>
         </section>
@@ -55,35 +57,26 @@
       </section>
       <!-- category-box -->
       <section class="main-wrap">
-        <section class="filter-box light">
-          <form class="filter-text-box">
-            <input
-              type="text"
-              class="todo-search light"
-              placeholder="할 일 검색..."
-            />
+          <section class="filter-box light">
+            <form class="filter-text-box">
+              <input type="text" class="todo-search light" placeholder="할 일 검색..."></input>
+              
+              <label for="period"></label>
+              <select id="period" class="period filter light" name="period">
+                <option value="1일전" selected>전체</option>
+                <option value="3일전">오늘</option>
+                <option value="7일전">7일 전</option>
+              </select>
 
-            <label name="period"></label>
-            <select class="period filter light" name="period">
-              <option value="1일전" selected>전체</option>
-              <option value="3일전">오늘</option>
-              <option value="7일전">7일 전</option>
-            </select>
+              <label for="importance"></label>
+              <select id="importance" class="importance filter light" name="importance">
+                <option value="1순위">높음</option>
+                <option value="2순위">중간</option>
+                <option value="3순위">낮음</option>
+                <option value="전체 : 우선순" selected>전체 : 우선순</option>
+              </select>
 
-            <label name="importance"></label>
-            <select class="importance filter light" name="importance">
-              <option value="1순위">1 순위</option>
-              <option value="2순위">2 순위</option>
-              <option value="3순위">3 순위</option>
-              <option value="전체 : 우선순" selected>전체 : 우선순</option>
-            </select>
-
-            <label name="sorting"></label>
-            <button type="button" id="sort-asc-btn" class="sorting-btn light">
-              <span class="sort-text">정렬 : ↑ 오름차순</span>
-            </button>
-
-              <label name="sorting"></label>
+              <!-- <label for="sorting"></label> -->
               <!-- <select class="sorting filter light" name="sorting"> -->
                 <!-- <option value="1순위">오름차순</option>
                 <option value="2순위">내림차순</option> -->
@@ -163,6 +156,36 @@
       </div>
     </div>
     <!-- reset-modal -->
+     <div id="change-modal" class="modal-overlay">
+      <div class="modal-change-content light">
+        <span class="todo-change">할 일 수정</span>
+        <form class="modal-form">
+          <label id="title" class="title" id="title">제목*</label>
+          <input name="title" type="text" id="todo-modal-title"  />
+        </form>
+        <form class="modal-form">
+          <label id="content" class="content">내용</label>
+          <textarea name="content" id="todo-modal-desc" ></textarea>
+        </form>
+        <div class="importance-btn-box">
+          <button class="importance-btn importance-first">높음</button>
+          <button class="importance-btn importance-second">중간</button>
+          <button class="importance-btn importance-third">낮음</button>
+          <form>
+            <label for="status-modal"></label>
+            <select id="status-modal" class="importance-modal light" name="importance">
+              <option value="to-do">할 일</option>
+              <option value="in-progress">진행 중</option>
+              <option value="done">완료</option>
+            </select>
+            </form>
+        </div>
+        <div class="change-modal-btn-box">
+          <button class="change-modal-cancle light">취소</button>
+          <button class="change-modal-save">저장하기</button>
+        </div>
+      </div> <!-- change-modal 할 일 수정 modal -->
+     </div>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         function updateClock() {
