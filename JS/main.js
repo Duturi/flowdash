@@ -48,7 +48,6 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("flowdash-nickname", newName);
 
         nicknameEl.textContent = `, ${newName}님`;
-        nicknameEl.style.display = "inline";
         input.remove();
       };
 
