@@ -33,29 +33,40 @@ document.addEventListener("DOMContentLoaded", () => {
     nicknameEl.addEventListener("click", () => {
       const myName = localStorage.getItem("flowdash-nickname") || "FlowDash";
       const input = document.createElement("input");
-
       input.type = "text";
       input.value = myName;
-      input.className = "nickname-edit-input";
 
-      nicknameEl.style.display = "none";
-      nicknameEl.after(input);
+      //스타일 설정
+      input.style.fontSize = "30px";
+      input.style.fontWeight = "bold";
+      input.size = myName.length;
+      input.style.padding = "0";
+      input.addEventListener("input", () => {
+        input.size = input.value.length;
+      });
+
+      const startText = document.createElement("span");
+      startText.innerText = ", ";
+
+      const endText = document.createElement("span");
+      endText.innerText = "님";
+
+      nicknameEl.textContent = "";
+      nicknameEl.appendChild(startText);
+      nicknameEl.appendChild(input);
+      nicknameEl.appendChild(endText);
+
       input.focus();
 
+      // 6. 저장 로직
       const save = () => {
         let newName = input.value.trim() || "FlowDash";
         localStorage.setItem("flowdash-nickname", newName);
-
         nicknameEl.textContent = `, ${newName}님`;
-        nicknameEl.style.display = "inline";
-        input.remove();
       };
 
       input.addEventListener("keydown", (e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          save();
-        }
+        if (e.key === "Enter") save();
       });
       input.addEventListener("blur", save);
     });
