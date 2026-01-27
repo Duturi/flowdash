@@ -32,15 +32,21 @@
     flex-direction: column;
   }
   .todo-search {
+    text-align: center;
     width: 100%;
   }
   .period {
+    text-align: center;
     width: 100%;
   }
   .importance {
+    text-align: center;
     width: 100%;
   }
   .sorting-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
   .add-btn {
