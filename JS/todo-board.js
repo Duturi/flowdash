@@ -55,12 +55,12 @@ function render() {
   let doingCountNum = 0;
   let doneCountNum = 0;
   let totalTasksCountNum = 0;
-  let deleteTodoId = null;
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
     li.className = "todo-item";
     li.dataset.id = todo.id;
+    li.dataset.status = todo.status;
 
     const priorityClass =
       todo.priority === "높음"
@@ -73,15 +73,14 @@ function render() {
     <div class="todo-info">
     <div class="todo-item-title">
     <button class="importance-btn ${priorityClass}">${todo.priority}</button>
-      <h3 class="todo-title">${todo.title}</h3>
-      </div>
+    <button class="del-btn" data-id="${todo.id}">X</button> 
+    </div>
+    <h3 class="todo-title">${todo.title}</h3>
       <div class="todo-item-desc">${todo.desc}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
       ${todo.updatedAt ? `${todo.updatedAt}` : todo.createdAt}
       </small>
-      <div class="del-btn-box">
-      <button class="del-btn status" data-id="${todo.id}">X</button> 
-      </div>
+
         </div>
         `;
     if (todo.status === "todo") {
@@ -95,21 +94,6 @@ function render() {
       doneCountNum++;
     }
   });
-  // 삭제 버튼 모달 진행중
-  // const deleteButton = document.querySelectorAll(".del-btn");
-  // deleteButton.addEventListener("click", (e) => {
-  //   const todoId = Number(e.target.dataset.id);
-  //   deleteTodoId = todoId;
-  //   deleteModal.style.display = "flex";
-  // });
-  // deleteBtnClear.addEventListener("click", () => {
-  //   todos = todos.filter((t) => t.id !== deleteTodoId);
-  //   deleteModal.style.display = "none";
-  // });
-  // deleteBtnClose.addEventListener("click", () => {
-  //   deleteModal.style.display = "none";
-  // });
-
   // 각 보드 별 카운트 증가
   document.querySelector(".todo-board .board-count").innerText = todoCountNum;
   document.querySelector(".in-progress-board .board-count").innerText =
@@ -169,7 +153,7 @@ function addTodo() {
   const now = Date.now();
   const date = new Date();
   const statusValue = document.querySelector("#status-modal").value;
-
+  const priorityValue = document.querySelector(".importance-btn").value;
   const number = date.toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
@@ -271,7 +255,7 @@ const changeModalCancle = document.querySelector(".change-modal-cancle");
 const changeModalSave = document.querySelector(".change-modal-save");
 
 let currentEditTodoId = null;
-let selectedPriority = null;
+// let selectedPriority = null;
 
 todoListContainer.forEach((todoList) => {
   todoList.addEventListener("click", (e) => {
@@ -305,7 +289,7 @@ changeModalSave.addEventListener("click", (e) => {
   todo.status = todoModalStatus.value;
   todo.updatedAt = new Date().toLocaleString("ko-KR");
 
-  localStorage.setItem("flowdash-todos", JSON.stringify(todos));
+  localStorage.setItem(TODO_KEY, JSON.stringify(todos));
 
   render();
   changeModal.style.display = "none";
@@ -314,4 +298,26 @@ changeModalSave.addEventListener("click", (e) => {
 changeModalCancle.addEventListener("click", () => {
   changeModal.style.display = "none";
   currentEditTodoId = null;
+});
+
+// 삭제 모달
+let deleteTodoId = null;
+
+document.addEventListener("click", (e) => {
+  const deleteBtn = e.target.closest(".del-btn");
+  if (!deleteBtn) return;
+  const todoId = Number(e.target.dataset.id);
+  deleteTodoId = todoId;
+  deleteModal.style.display = "flex";
+});
+
+deleteBtnClear.addEventListener("click", () => {
+  todos = todos.filter((t) => t.id !== deleteTodoId);
+  saveTodos(TODO_KEY);
+  render();
+  deleteModal.style.display = "none";
+});
+
+deleteBtnClose.addEventListener("click", () => {
+  deleteModal.style.display = "none";
 });
