@@ -18,7 +18,31 @@
   background-color: #fafafa;
   font-family: "pretendard";
 }
+#change-modal-title {
+  width: 350px;
+  height: 40px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  border: 1px solid #d9cebb;
+  background-color: #fafafa;
+  font-family: "pretendard";
+  color: #0c0c0c;
+  padding-left: 13px;
+}
 #todo-modal-desc {
+  width: 350px;
+  height: 250px;
+  border-radius: 20px;
+  margin-bottom: 15px;
+  border: 1px solid #d9cebb;
+  text-align: left;
+  padding: 13px;
+  box-sizing: border-box;
+  resize: none;
+  font-weight: 600;
+  font-family: "pretendard";
+}
+#change-modal-desc {
   width: 350px;
   height: 250px;
   border-radius: 20px;
@@ -124,6 +148,37 @@
   color: #0c0c0c;
 }
 #reset-btn-close {
+  width: 250px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #d9cebb;
+  text-align: center;
+  background-color: #fafafa;
+  color: #0c0c0c;
+}
+.delete-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "pretendard";
+}
+.delete-modal-text {
+  padding: 20px;
+  color: #0c0c0c;
+  text-align: center;
+  line-height: 25px;
+}
+#delete-btn-clear {
+  width: 250px;
+  height: 30px;
+  border-radius: 15px;
+  border: 1px solid #d9cebb;
+  text-align: center;
+  margin-bottom: 15px;
+  background-color: #ff7d7d;
+  color: #0c0c0c;
+}
+#delete-btn-close {
   width: 250px;
   height: 30px;
   border-radius: 15px;
@@ -266,13 +321,22 @@
   color: #ff0000;
   border: 1px solid #ff0000;
 }
+.importance-first:focus {
+  background-color: #ff7d7d;
+}
 .importance-second {
   color: #f5af19;
   border: 1px solid #f5af19;
 }
+.importance-second:focus {
+  background-color: #ffd883;
+}
 .importance-third {
   color: #7279ff;
   border: 1px solid #7279ff;
+}
+.importance-third:focus {
+  background-color: #8dbeff;
 }
 .importance-modal {
   min-width: 120px;

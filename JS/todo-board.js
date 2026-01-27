@@ -5,13 +5,17 @@ const closeBtn = document.querySelector("#todo-btn-close");
 
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
-const todoListContainer = document.querySelector(".todo-list-container");
+const todoListContainer = document.querySelectorAll(".todo-list-container");
 const countTotalToDo = document.querySelector(".category-count-to-do");
 const countTotalInProgress = document.querySelector(
   ".category-count-in-progress",
 );
 const countTotalDone = document.querySelector(".category-count-done");
 const countTotlaTasks = document.querySelector(".category-count-total-tasks");
+const countAchievement = document.querySelector(".category-count-achievement");
+const deleteModal = document.querySelector("#delete-modal");
+const deleteBtnClear = document.querySelector("#delete-btn-clear");
+const deleteBtnClose = document.querySelector("#delete-btn-close");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
@@ -40,10 +44,12 @@ function render() {
   let doingCountNum = 0;
   let doneCountNum = 0;
   let totalTasksCountNum = 0;
+  let deleteTodoId = null;
 
   todos.forEach((todo, index) => {
     const li = document.createElement("li");
     li.className = "todo-item";
+    li.dataset.id = todo.id;
 
     li.innerHTML = `
     <div class="todo-info">
@@ -53,9 +59,10 @@ function render() {
       </div>
       <div class="todo-item-desc">${todo.desc}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
-      ${todo.createdAt}</small>
+      ${todo.updatedAt ? `${todo.updatedAt}` : todo.createdAt}
+      </small>
       <div class="del-btn-box">
-      <button class="del-btn status" onclick="deleteTodo(${index})">X</button> 
+      <button class="del-btn status" data-id="${todo.id}">X</button> 
       </div>
         </div>
         `;
@@ -70,6 +77,20 @@ function render() {
       doneCountNum++;
     }
   });
+  // 삭제 버튼 모달 진행중
+  // const deleteButton = document.querySelectorAll(".del-btn");
+  // deleteButton.addEventListener("click", (e) => {
+  //   const todoId = Number(e.target.dataset.id);
+  //   deleteTodoId = todoId;
+  //   deleteModal.style.display = "flex";
+  // });
+  // deleteBtnClear.addEventListener("click", () => {
+  //   todos = todos.filter((t) => t.id !== deleteTodoId);
+  //   deleteModal.style.display = "none";
+  // });
+  // deleteBtnClose.addEventListener("click", () => {
+  //   deleteModal.style.display = "none";
+  // });
 
   // 각 보드 별 카운트 증가
   document.querySelector(".todo-board .board-count").innerText = todoCountNum;
@@ -88,6 +109,20 @@ function render() {
 
   // 카테고르 박스의 Total Tasks 카운트 숫자
   countTotlaTasks.innerText = todos.length;
+
+  // 카테고리 박스의 achievement 카운트 숫자
+  const countTotalTasks = todoCountNum + doingCountNum + doneCountNum;
+
+  function achievementValue() {
+    let percent = 0;
+
+    if (countTotalTasks > 0) {
+      percent = (doneCountNum / countTotalTasks) * 100;
+    }
+    countAchievement.textContent = Math.floor(percent) + "%";
+  }
+
+  achievementValue();
 
   console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
 }
@@ -130,7 +165,7 @@ function addTodo() {
     status: statusValue,
     priority: priorityValue,
     createdAt: number,
-    updatedAt: null,
+    updatedAt: number,
     completedAt: null,
   };
   todos.push(newTodo);
@@ -206,64 +241,57 @@ sortBtn.onclick = () => {
 };
 
 // 수정 모달
+const boards = document.querySelector(".boards");
 const todoItem = document.querySelector(".todo-item");
 const changeModal = document.querySelector("#change-modal");
+const changeModalTitle = document.querySelector("#change-modal-title");
+const changeModalDesc = document.querySelector("#change-modal-desc");
+const todoModalStatus = document.querySelector("#status-modal");
 const changeModalCancle = document.querySelector(".change-modal-cancle");
-const todoModalTitle = document.querySelector("#todo-modal-title");
-const todoModalDesc = document.querySelector("#todo-modal-desc");
+const changeModalSave = document.querySelector(".change-modal-save");
 
-todoListContainer.addEventListener("click", (e) => {
-  changeModal.style.display = "flex";
+let currentEditTodoId = null;
+let selectedPriority = null;
+
+todoListContainer.forEach((todoList) => {
+  todoList.addEventListener("click", (e) => {
+    const item = e.target.closest(".todo-item");
+    if (!item) return;
+
+    if (e.target.classList.contains("del-btn")) return;
+
+    const todoId = Number(item.dataset.id);
+    currentEditTodoId = todoId;
+
+    const todo = todos.find((t) => t.id === todoId);
+    if (!todo) return;
+
+    changeModalTitle.value = todo.title;
+    changeModalDesc.value = todo.desc;
+    todoModalStatus.value = todo.status;
+
+    changeModal.style.display = "flex";
+  });
+});
+
+changeModalSave.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const todo = todos.find((t) => t.id === currentEditTodoId);
+  if (!todo) return;
+
+  todo.title = changeModalTitle.value.trim();
+  todo.desc = changeModalDesc.value.trim();
+  todo.status = todoModalStatus.value;
+  todo.updatedAt = new Date().toLocaleString("ko-KR");
+
+  localStorage.setItem("flowdash-todos", JSON.stringify(todos));
+
+  render();
+  changeModal.style.display = "none";
+  currentEditTodoId = null;
 });
 changeModalCancle.addEventListener("click", () => {
   changeModal.style.display = "none";
+  currentEditTodoId = null;
 });
-
-// 카테고리 보드별 카운트 숫자 증가
-// let todosStatus = [{ status: "todo" }, { status: "doing" }, { status: "done" }]; // 나중에 todo 리스트 객체 추가되면 그 값 참조
-
-// 위에 선언 되어 있어서 일단 주석
-// const countTotalTasks = document.querySelector(".category-count-total-tasks");
-// const countToDo = document.querySelector(".category-count-to-do");
-// const countDoing = document.querySelector(".category-count-in-progress");
-// const countDone = document.querySelector(".category-count-done");
-const countAchievement = document.querySelector(".category-count-achievement");
-
-const boardCountTodo = document.querySelector(".board-count-todo");
-const boardCountDoing = document.querySelector(".board-count-doing");
-const boardCountDone = document.querySelector(".board-count-done");
-
-let todoCounts = todosStatus.filter((t) => t.status === "todo").length;
-let doingCounts = todosStatus.filter((t) => t.status === "doing").length;
-let doneCounts = todosStatus.filter((t) => t.status === "done").length;
-let achievementCounts = (countDone / countTotalTasks) * 100;
-
-const totalCounts = todoCounts + doingCounts + doneCounts;
-
-countTotalTasks.textContent = totalCounts;
-countToDo.textContent = todoCounts;
-boardCountTodo.textContent = todoCounts;
-
-countDoing.textContent = doingCounts;
-boardCountDoing.textContent = doingCounts;
-
-countDone.textContent = doneCounts;
-boardCountDone.textContent = doneCounts;
-
-function achievementValue() {
-  let percent = 0;
-
-  if (totalCounts > 0) {
-    percent = (doneCounts / totalCounts) * 100;
-  }
-
-  countAchievement.textContent = Math.floor(percent) + "%";
-}
-
-achievementValue();
-
-// 보드 별로 이동 우선순위 상태값
-// 새 하링ㄹ 추가할때 우선순위 누르면 그 상태로 값 적용
-// 할 일 검색 = 할 일 검색 input.value = filter로 각 보드에서 찾아야함
-// 기간 = 할 일 생성 시간으로 부터 오늘 7일전 (필터)
-// 정렬 = 제목 기준으로(todo-title).value? 값을 비교 차순대로 랜더..
