@@ -1,9 +1,11 @@
 const period = document.querySelector("#period");
 const stickerlist = document.querySelector(".sticker-list");
 const importance = document.querySelector("#importance");
+const search = document.querySelector(".todo-search");
 let filterState = {
   period: null,
   importance: null,
+  search: null,
   sort: "asc",
 };
 function saveSticker() {
@@ -26,6 +28,9 @@ function renderSticker() {
 
   if (filterState.importance) {
     createSticker(filterState.importance);
+  }
+  if (filterState.search) {
+    createSticker(filterState.search);
   }
 }
 
@@ -50,6 +55,13 @@ period.addEventListener("change", () => {
 importance.addEventListener("change", () => {
   filterState.importance =
     importance.value === "전체 : 우선순" ? null : importance.value;
+
+  saveSticker();
+  renderSticker();
+});
+
+search.addEventListener("input", () => {
+  filterState.search = search.value.trim() || null;
 
   saveSticker();
   renderSticker();
