@@ -152,7 +152,7 @@ function addTodo() {
   // todo 객체
   const now = Date.now();
   const date = new Date();
-  const statusValue = document.querySelector("#status-modal").value;
+  const statusValue = document.querySelector("#todo-status-modal").value;
   const priorityValue = document.querySelector(".importance-btn").value;
   const number = date.toLocaleString("ko-KR", {
     year: "numeric",
