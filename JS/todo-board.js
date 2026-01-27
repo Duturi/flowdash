@@ -19,6 +19,7 @@ const deleteBtnClose = document.querySelector("#delete-btn-close");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
+let selectedPriority = "";
 
 function loadTodos() {
   const savedTodos = localStorage.getItem(TODO_KEY);
@@ -28,6 +29,16 @@ function loadTodos() {
 function saveTodos() {
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
 }
+//우선 순위 버튼
+const priorityBtns = document.querySelectorAll("#todo-modal .importance-btn");
+priorityBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    priorityBtns.forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    selectedPriority = btn.innerText.trim();
+  });
+});
 
 function render() {
   const todoBoard = document.querySelector(".todo-board .todo-list-container");
@@ -51,10 +62,17 @@ function render() {
     li.className = "todo-item";
     li.dataset.id = todo.id;
 
+    const priorityClass =
+      todo.priority === "높음"
+        ? "importance-first"
+        : todo.priority === "중간"
+          ? "importance-second"
+          : "importance-third";
+
     li.innerHTML = `
     <div class="todo-info">
     <div class="todo-item-title">
-    <button class="importance-btn">높음</button>
+    <button class="importance-btn ${priorityClass}">${todo.priority}</button>
       <h3 class="todo-title">${todo.title}</h3>
       </div>
       <div class="todo-item-desc">${todo.desc}</div>
@@ -129,6 +147,8 @@ function render() {
 
 function openModal() {
   todoModal.style.display = "flex";
+  priorityValue = "";
+  priorityBtns.forEach((btn) => btn.classList.remove("active"));
 }
 
 function closeModal() {
@@ -149,7 +169,7 @@ function addTodo() {
   const now = Date.now();
   const date = new Date();
   const statusValue = document.querySelector("#status-modal").value;
-  const priorityValue = document.querySelector(".importance-btn-box").value;
+
   const number = date.toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
@@ -163,7 +183,7 @@ function addTodo() {
     title: title,
     desc: desc,
     status: statusValue,
-    priority: priorityValue,
+    priority: selectedPriority,
     createdAt: number,
     updatedAt: number,
     completedAt: null,
