@@ -63,9 +63,9 @@ function render() {
     li.dataset.status = todo.status;
 
     const priorityClass =
-      todo.priority === "높음"
+      todo.priority === "high"
         ? "importance-first"
-        : todo.priority === "중간"
+        : todo.priority === "mid"
           ? "importance-second"
           : "importance-third";
 
@@ -78,7 +78,7 @@ function render() {
     <h3 class="todo-title">${todo.title}</h3>
       <div class="todo-item-desc">${todo.desc}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
-      ${todo.updatedAt ? `${todo.updatedAt}` : todo.createdAt}
+      ${todo.updatedAt ? ` ${todo.updatedAt}` : todo.createdAt}
       </small>
 
         </div>
@@ -128,7 +128,6 @@ function render() {
 
   console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
 }
-
 function openModal() {
   todoModal.style.display = "flex";
   priorityValue = "";
@@ -287,7 +286,15 @@ changeModalSave.addEventListener("click", (e) => {
   todo.title = changeModalTitle.value.trim();
   todo.desc = changeModalDesc.value.trim();
   todo.status = todoModalStatus.value;
-  todo.updatedAt = new Date().toLocaleString("ko-KR");
+  todo.priority = selectedPriority;
+  todo.updatedAt = new Date().toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
 
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
 
