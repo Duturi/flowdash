@@ -185,6 +185,7 @@ function addTodo() {
     createdAt: number,
     updatedAt: number,
     completedAt: null,
+    keyword: "",
   };
   todos.push(newTodo);
 
@@ -224,11 +225,9 @@ const closeResetBtn = document.querySelector("#reset-btn-close");
 function clearAllData() {
   todos = [];
   localStorage.removeItem(TODO_KEY);
-  render();
   resetModal.style.display = "none";
   console.log("[Clear] 전체 삭제됨");
 }
-
 resetBtn.addEventListener("click", () => {
   resetModal.style.display = "flex";
 });

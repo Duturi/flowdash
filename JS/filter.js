@@ -44,7 +44,7 @@ function sortFilter(todos, filterValue) {
   return todos;
   // 함수 내용물 받아서 넘겨주는 함수 자리
 }
-// 검색어필터
+// 검색어필터;
 function searchFilter(todos, keyword) {
   if (!keyword) return todos;
   return todos.filter(
@@ -54,27 +54,28 @@ function searchFilter(todos, keyword) {
 
 // 검색 인풋 클릭
 search.addEventListener("click", () => {
-  applyFilter();
+  applyFilter(todos, filterValue);
 });
 // 기간 필터 클릭
 dataBtn.addEventListener("click", () => {
-  applyFilter();
+  applyFilter(todos, filterValue);
 });
 // 우선순위 필터 클릭
 importance.addEventListener("click", () => {
-  applyFilter();
+  applyFilter(todos, filterValue);
 });
 // 정렬버튼 클릭
 sortBtn.addEventListener("click", () => {
-  applyFilter();
+  applyFilter(todos, filterValue);
 });
 
-function applyFilter(todos, filters) {
+function applyFilter(todos, filterValue) {
   let result = todos;
   result = dateFilter(result, filterValue);
   result = statusFilter(result, filterValue);
   result = periodFilter(result, filterValue);
   result = sortFilter(result, filterValue);
-  result = searchFilter(result, keyword);
+  result = searchFilter(result, filterValue.keyword);
   return result;
 }
+const newFilterTodo = applyFilter(todos, filterValue);
