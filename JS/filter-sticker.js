@@ -4,8 +4,8 @@ const importance = document.querySelector("#importance");
 const search = document.querySelector(".todo-search");
 let filterValue = {
   date: null,
-  importance: null,
-  search: null,
+  priority: null,
+  keyword: null,
   sort: "asc",
 };
 function saveSticker() {
@@ -26,11 +26,11 @@ function renderSticker() {
     createSticker(filterValue.date);
   }
 
-  if (filterValue.importance) {
-    createSticker(filterValue.importance);
+  if (filterValue.priority) {
+    createSticker(filterValue.priority);
   }
-  if (filterValue.search) {
-    createSticker(filterValue.search);
+  if (filterValue.keyword) {
+    createSticker(filterValue.keyword);
   }
 }
 
@@ -45,23 +45,22 @@ function createSticker(text) {
   stickerlist.appendChild(btn);
 }
 
-dataBtn.addEventListener("change", () => {
-  filterValue.date = date.value === "전체" ? null : date.value;
+dataBtn.addEventListener("change", (e) => {
+  filterValue.date = e.target.value === "all" ? null : e.target.value;
 
   saveSticker();
   renderSticker();
 });
 
-importance.addEventListener("change", () => {
-  filterValue.importance =
-    importance.value === "전체 : 우선순" ? null : importance.value;
+importance.addEventListener("change", (e) => {
+  filterValue.priority = e.target.value === "all" ? null : e.target.value;
 
   saveSticker();
   renderSticker();
 });
 
 search.addEventListener("input", (e) => {
-  filterValue.search = e.target.value.trim() || null;
+  filterValue.keyword = e.target.value.trim() || null;
 
   saveSticker();
   renderSticker();
