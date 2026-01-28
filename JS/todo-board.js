@@ -84,7 +84,7 @@ function render() {
     <button class="del-btn" data-id="${todo.id}">X</button> 
     </div>
     <h3 class="todo-title">${todo.title}</h3>
-      <div class="todo-item-desc">${todo.desc}</div>
+      <div class="todo-item-desc">${todo.content}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
       ${todo.updatedAt ? ` ${todo.updatedAt}` : todo.createdAt}
       </small>
@@ -179,10 +179,10 @@ function addTodo() {
   const newTodo = {
     id: now,
     title: title,
-    desc: desc,
+    content: desc,
     status: statusValue,
     priority: selectedPriority,
-    createdAt: number,
+    createdAt: Date.now(),
     updatedAt: number,
     completedAt: null,
     keyword: "",
@@ -299,7 +299,7 @@ todoListContainer.forEach((todoList) => {
     if (!todo) return;
 
     changeModalTitle.value = todo.title;
-    changeModalDesc.value = todo.desc;
+    changeModalDesc.value = todo.content;
     todoModalStatus.value = todo.status;
     selectedPriority = todo.priority;
 
@@ -314,7 +314,7 @@ changeModalSave.addEventListener("click", (e) => {
   if (!todo) return;
 
   todo.title = changeModalTitle.value.trim();
-  todo.desc = changeModalDesc.value.trim();
+  todo.content = changeModalDesc.value.trim();
   todo.status = todoModalStatus.value;
   todo.priority = selectedPriority;
   todo.updatedAt = new Date().toLocaleString("ko-KR", {
