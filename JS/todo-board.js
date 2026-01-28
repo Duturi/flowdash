@@ -19,7 +19,6 @@ const deleteBtnClose = document.querySelector("#delete-btn-close");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
-let selectedPriority = "";
 
 function loadTodos() {
   const savedTodos = localStorage.getItem(TODO_KEY);
