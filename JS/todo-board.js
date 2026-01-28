@@ -33,9 +33,12 @@ const priorityBtns = document.querySelectorAll("#todo-modal .importance-btn");
 priorityBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
-    priorityBtns.forEach((b) => b.classList.remove("active"));
+    priorityBtns.forEach((btn) => btn.classList.remove("active"));
     btn.classList.add("active");
-    selectedPriority = btn.innerText.trim();
+    const text = btn.innerText.trim();
+    if (text === "높음") selectedPriority = "high";
+    else if (text === "중간") selectedPriority = "mid";
+    else selectedPriority = "low";
   });
 });
 
@@ -67,15 +70,21 @@ function render() {
         : todo.priority === "mid"
           ? "importance-second"
           : "importance-third";
+    const priorityName =
+      todo.priority === "high"
+        ? "높음"
+        : todo.priority === "mid"
+          ? "중간"
+          : "낮음";
 
     li.innerHTML = `
     <div class="todo-info">
     <div class="todo-item-title">
-    <button class="importance-btn ${priorityClass}">${todo.priority}</button>
+    <button class="importance-btn ${priorityClass}">${priorityName}</button>
     <button class="del-btn" data-id="${todo.id}">X</button> 
     </div>
     <h3 class="todo-title">${todo.title}</h3>
-      <div class="todo-item-desc">${todo.content}</div>
+      <div class="todo-item-desc">${todo.desc}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
       ${todo.updatedAt ? ` ${todo.updatedAt}` : todo.createdAt}
       </small>
@@ -130,7 +139,14 @@ function render() {
 function openModal() {
   todoModal.style.display = "flex";
   priorityValue = "";
-  priorityBtns.forEach((btn) => btn.classList.remove("active"));
+  selectedPriority = "mid";
+  priorityBtns.forEach((btn) => {
+    if (btn.innerText.trim() === "중간") {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
 }
 
 function closeModal() {
@@ -151,8 +167,7 @@ function addTodo() {
   const now = Date.now();
   const date = new Date();
   const statusValue = document.querySelector("#todo-status-modal").value;
-  const timeStamp = Date.now();
-  const selectedPriority = document.querySelector(".importance-btn").value;
+  const priorityValue = document.querySelector(".importance-btn").value;
   const number = date.toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
@@ -164,10 +179,10 @@ function addTodo() {
   const newTodo = {
     id: now,
     title: title,
-    content: desc,
+    desc: desc,
     status: statusValue,
     priority: selectedPriority,
-    createdAt: timeStamp,
+    createdAt: number,
     updatedAt: number,
     completedAt: null,
   };
@@ -254,12 +269,26 @@ const changeModalCancle = document.querySelector(".change-modal-cancle");
 const changeModalSave = document.querySelector(".change-modal-save");
 
 let currentEditTodoId = null;
-let selectedPriority = null;
+
+const changePriorityBtns = document.querySelectorAll(
+  "#change-modal .importance-btn",
+);
+changePriorityBtns.forEach((btn) => {
+  btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    changePriorityBtns.forEach((btn) => btn.classList.remove("active"));
+    btn.classList.add("active");
+
+    const text = btn.innerText.trim();
+    if (text === "높음") selectedPriority = "high";
+    else if (text === "중간") selectedPriority = "mid";
+    else selectedPriority = "low";
+  });
+});
 
 todoListContainer.forEach((todoList) => {
   todoList.addEventListener("click", (e) => {
     const item = e.target.closest(".todo-item");
-    const selectedPriority = document.querySelectorAll(".importance-btn");
     if (!item) return;
 
     if (e.target.classList.contains("del-btn")) return;
@@ -271,9 +300,9 @@ todoListContainer.forEach((todoList) => {
     if (!todo) return;
 
     changeModalTitle.value = todo.title;
-    changeModalDesc.value = todo.content;
+    changeModalDesc.value = todo.desc;
     todoModalStatus.value = todo.status;
-    selectedPriority.value = todo.period;
+    selectedPriority = todo.priority;
 
     changeModal.style.display = "flex";
   });
@@ -281,16 +310,14 @@ todoListContainer.forEach((todoList) => {
 
 changeModalSave.addEventListener("click", (e) => {
   e.preventDefault();
-  const selectedPriority = document.querySelectorAll(".importance-btn");
+
   const todo = todos.find((t) => t.id === currentEditTodoId);
   if (!todo) return;
 
   todo.title = changeModalTitle.value.trim();
-  todo.content = changeModalDesc.value.trim();
+  todo.desc = changeModalDesc.value.trim();
   todo.status = todoModalStatus.value;
-  todo.priority = selectedPriority.forEach((btn) => {
-    btn.dataset.value;
-  });
+  todo.priority = selectedPriority;
   todo.updatedAt = new Date().toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
