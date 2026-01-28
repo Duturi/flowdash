@@ -368,13 +368,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 80px;
+  min-width: 70px;
   min-height: 30px;
   cursor: pointer;
   border-radius: 16px;
   background-color: #fafafa;
   border: 1px solid #d9cebb;
   color: #0c0c0c;
+}
+.filter-sticker {
+  padding: 0px 10px;
 }
 .display-none {
   display: none;

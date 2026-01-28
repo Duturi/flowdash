@@ -253,7 +253,7 @@ const changeModalCancle = document.querySelector(".change-modal-cancle");
 const changeModalSave = document.querySelector(".change-modal-save");
 
 let currentEditTodoId = null;
-// let selectedPriority = null;
+let selectedPriority = null;
 
 todoListContainer.forEach((todoList) => {
   todoList.addEventListener("click", (e) => {

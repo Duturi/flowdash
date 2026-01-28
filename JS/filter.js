@@ -1,29 +1,84 @@
-// 기간, 상태, 우선순위, 검색
-// 정렬
-// 기간 > 상태 > 우선순위 > 정렬 > 검색
-// function 기간을 필터하는 함수 (todos, 기간필터값) {
-//   if(!기간필터 값) return todos;
-//   return todos.filter(todo => todo.createAt기준으로 날짜조건을 필터)
-// }
-// function 상태를 필터하는 함수(todos, 상태필터값) {
-//   if (!상태필터 값) return todos;
-//   return todos.filter(todo => todo.status === 상태필터값)
-// }
-// 우선순위를 필터하는 함수, 정렬하는 함수, 검색어를 필터하는 함수
-// function applyFilters(todos, filters) {
+// 기간필터
+function createdAtFilter(todos, todosCreateAt) {
+  const start = todos.creatdeAt;
+  const store = localStorage.getItem(TODO_KEY);
+  if (!todos.creatdeAt.value === todayValue && sevenDayValue) return allValue;
+  const allValue = store.filter((a) => a.creatdeAt === "all");
+  const todayValue = store.filter((t) => t.creatdeAt === "today");
+  const sevenDayValue = store.filter((s) => s.creatdeAt === "7");
+}
+// 상태필터
+function statusFilter(todos, todosStatus) {
+  const store = localStorage.getItem(TODO_KEY);
+  if (!todos.status.value === doingValue && doneValue) return todoValue;
+  const todoValue = store.filter((todo) => todo.period === "todo");
+  const doingValue = store.filter((doing) => doing.period === "doing");
+  const doneValue = store.filter((done) => done.period === "done");
+}
+// 우선순위필터
+function periodFilter(todos, todosPeriod) {
+  const store = localStorage.getItem(TODO_KEY);
+  if (!todos.period.value === midValue && lowValue) return highValue;
+  const highValue = store.filter((high) => high.period === "high");
+  const midValue = store.filter((mid) => mid.period === "mid");
+  const lowValue = store.filter((low) => low.period === "low");
+}
+// 정렬필터
+function sortFilter(todos, todosSort) {
+  const store = localStorage.getItem(TODO_KEY);
+  if (!todos.title((a, b) => a - b)) {
+    // 오름차순 render()
+  } else return;
+  // 내림차순 render()
+}
+// 검색어필터
+function searchFilter(todos, todosSearch) {
+  const store = localStorage.getItem(TODO_KEY);
+  const findTitle = todos.includes(title);
+  if (!findTitle === searchValue) return;
+  const searchValue = store.filter((search) => search.title);
+}
+
+// 검색 인풋 클릭
+search.addEventListener("click", () => {
+  applyFilter();
+});
+// 기간 필터 클릭
+date.addEventListener("click", () => {
+  applyFilter();
+});
+// 우선순위 필터 클릭
+importance.addEventListener("click", () => {
+  applyFilter();
+});
+// 정렬버튼 클릭
+sortBtn.addEventListener("click", () => {
+  applyFilter();
+});
+
+// function applyFilter(todos,filters) {
 //   let result = todos;
+//   // 기간을 필터하는 함수
+//   result = createdAtFilter(result,filters.date) {
 
-//   result = 기간을 필터하는 함수(result, filters.date);
-//   result = 상태를 필터하는 함수(result, filters.status);
-//   result = 우선순위를 필터하는 함수(result, filters.priority);
-//   result = 정렬하는 함수(result, filters.sort);
-//   result = 검색어를 필터하는 함수(result, filters.keyword);
+//   }
+//   // 상태를 필터하는 함수
+//   result = statusFilter(result,filters.status) {
 
-//   retusn result;
+//   }
+//   // 우선순위를 필터하는 함수
+//   result = periodFilter(result,filters.priority) {
+
+//   }
+//   // 정렬하는 함수
+//   result = sortFilter(result,filters.sort) {
+
+//   }
+//   // 검색어를 필터하는 함수
+//   result = searchFilter(result,filters.keyword) {
+
+//   }
+//   return result;
 // }
 
-// 새로고침 또는 처음 페이지 진입
-
-// 2, 로컬스토리지에 값이 있는지 확인
-// 2-1. 값이 없다면? 빈배열로 반환
-// 2-2. 값이 있다면? 각 todo.status별로 나눠서 화면에 보여주기
+const newFilterTodo = applyFilter();
