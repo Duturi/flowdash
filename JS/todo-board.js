@@ -75,7 +75,7 @@ function render() {
     <button class="del-btn" data-id="${todo.id}">X</button> 
     </div>
     <h3 class="todo-title">${todo.title}</h3>
-      <div class="todo-item-desc">${todo.desc}</div>
+      <div class="todo-item-desc">${todo.content}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
       ${todo.updatedAt ? ` ${todo.updatedAt}` : todo.createdAt}
       </small>
@@ -151,7 +151,8 @@ function addTodo() {
   const now = Date.now();
   const date = new Date();
   const statusValue = document.querySelector("#todo-status-modal").value;
-  const priorityValue = document.querySelector(".importance-btn").value;
+  const timeStamp = Date.now();
+  const selectedPriority = document.querySelector(".importance-btn").value;
   const number = date.toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
@@ -163,10 +164,10 @@ function addTodo() {
   const newTodo = {
     id: now,
     title: title,
-    desc: desc,
+    content: desc,
     status: statusValue,
     priority: selectedPriority,
-    createdAt: number,
+    createdAt: timeStamp,
     updatedAt: number,
     completedAt: null,
   };
@@ -258,6 +259,7 @@ let selectedPriority = null;
 todoListContainer.forEach((todoList) => {
   todoList.addEventListener("click", (e) => {
     const item = e.target.closest(".todo-item");
+    const selectedPriority = document.querySelectorAll(".importance-btn");
     if (!item) return;
 
     if (e.target.classList.contains("del-btn")) return;
@@ -269,8 +271,9 @@ todoListContainer.forEach((todoList) => {
     if (!todo) return;
 
     changeModalTitle.value = todo.title;
-    changeModalDesc.value = todo.desc;
+    changeModalDesc.value = todo.content;
     todoModalStatus.value = todo.status;
+    selectedPriority.value = todo.period;
 
     changeModal.style.display = "flex";
   });
@@ -278,14 +281,16 @@ todoListContainer.forEach((todoList) => {
 
 changeModalSave.addEventListener("click", (e) => {
   e.preventDefault();
-
+  const selectedPriority = document.querySelectorAll(".importance-btn");
   const todo = todos.find((t) => t.id === currentEditTodoId);
   if (!todo) return;
 
   todo.title = changeModalTitle.value.trim();
-  todo.desc = changeModalDesc.value.trim();
+  todo.content = changeModalDesc.value.trim();
   todo.status = todoModalStatus.value;
-  todo.priority = selectedPriority;
+  todo.priority = selectedPriority.forEach((btn) => {
+    btn.dataset.value;
+  });
   todo.updatedAt = new Date().toLocaleString("ko-KR", {
     year: "numeric",
     month: "numeric",
