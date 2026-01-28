@@ -1,36 +1,36 @@
-const date = document.querySelector("#date");
+const dataBtn = document.querySelector("#data");
 const stickerlist = document.querySelector(".sticker-list");
 const importance = document.querySelector("#importance");
 const search = document.querySelector(".todo-search");
-let filterState = {
+let filterValue = {
   date: null,
   importance: null,
   search: null,
   sort: "asc",
 };
 function saveSticker() {
-  localStorage.setItem("flowdash-sticker", JSON.stringify(filterState));
+  localStorage.setItem("flowdash-sticker", JSON.stringify(filterValue));
 }
 function loadSticker() {
   const saved = localStorage.getItem("flowdash-sticker");
   if (!saved) return;
 
-  filterState = JSON.parse(saved);
+  filterValue = JSON.parse(saved);
   renderSticker();
   // updateSortUi();
 }
 
 function renderSticker() {
   stickerlist.innerHTML = "";
-  if (filterState.date) {
-    createSticker(filterState.date);
+  if (filterValue.date) {
+    createSticker(filterValue.date);
   }
 
-  if (filterState.importance) {
-    createSticker(filterState.importance);
+  if (filterValue.importance) {
+    createSticker(filterValue.importance);
   }
-  if (filterState.search) {
-    createSticker(filterState.search);
+  if (filterValue.search) {
+    createSticker(filterValue.search);
   }
 }
 
@@ -45,15 +45,15 @@ function createSticker(text) {
   stickerlist.appendChild(btn);
 }
 
-date.addEventListener("change", () => {
-  filterState.date = date.value === "전체" ? null : date.value;
+dataBtn.addEventListener("change", () => {
+  filterValue.date = date.value === "전체" ? null : date.value;
 
   saveSticker();
   renderSticker();
 });
 
 importance.addEventListener("change", () => {
-  filterState.importance =
+  filterValue.importance =
     importance.value === "전체 : 우선순" ? null : importance.value;
 
   saveSticker();
@@ -61,15 +61,14 @@ importance.addEventListener("change", () => {
 });
 
 search.addEventListener("input", (e) => {
-  filterState.search = e.target.value.trim() || null;
+  filterValue.search = e.target.value.trim() || null;
 
   saveSticker();
   renderSticker();
 });
-// sortBtn.addEventListener("click", () => {
-//   filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
-
-// });
+sortBtn.addEventListener("click", () => {
+  filterValue.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
+});
 
 // function updateSortUi() {
 //   const sortBtn = document.querySelector("#sort-asc-btn");
@@ -77,4 +76,4 @@ search.addEventListener("input", (e) => {
 //   text.textContent =
 //     filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
 // }
-// loadSticker();
+loadSticker();
