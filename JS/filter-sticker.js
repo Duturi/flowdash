@@ -1,9 +1,9 @@
-const period = document.querySelector("#period");
+const date = document.querySelector("#date");
 const stickerlist = document.querySelector(".sticker-list");
 const importance = document.querySelector("#importance");
 const search = document.querySelector(".todo-search");
 let filterState = {
-  period: null,
+  date: null,
   importance: null,
   search: null,
   sort: "asc",
@@ -17,13 +17,13 @@ function loadSticker() {
 
   filterState = JSON.parse(saved);
   renderSticker();
-  updateSortUi();
+  // updateSortUi();
 }
 
 function renderSticker() {
   stickerlist.innerHTML = "";
-  if (filterState.period) {
-    createSticker(filterState.period);
+  if (filterState.date) {
+    createSticker(filterState.date);
   }
 
   if (filterState.importance) {
@@ -45,8 +45,8 @@ function createSticker(text) {
   stickerlist.appendChild(btn);
 }
 
-period.addEventListener("change", () => {
-  filterState.period = period.value === "전체" ? null : period.value;
+date.addEventListener("change", () => {
+  filterState.date = date.value === "전체" ? null : date.value;
 
   saveSticker();
   renderSticker();
@@ -60,17 +60,21 @@ importance.addEventListener("change", () => {
   renderSticker();
 });
 
-search.addEventListener("input", () => {
-  filterState.search = search.value.trim() || null;
+search.addEventListener("input", (e) => {
+  filterState.search = e.target.value.trim() || null;
 
   saveSticker();
   renderSticker();
 });
+// sortBtn.addEventListener("click", () => {
+//   filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
 
-function updateSortUi() {
-  const sortBtn = document.querySelector("#sort-asc-btn");
-  const text = sortBtn.querySelector(".sort-text");
-  text.textContent =
-    filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
-}
-loadSticker();
+// });
+
+// function updateSortUi() {
+//   const sortBtn = document.querySelector("#sort-asc-btn");
+//   const text = sortBtn.querySelector(".sort-text");
+//   text.textContent =
+//     filterState.sort === "asc" ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
+// }
+// loadSticker();
