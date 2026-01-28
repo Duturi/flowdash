@@ -70,6 +70,5 @@ document.addEventListener("DOMContentLoaded", () => {
       input.addEventListener("blur", save);
     });
   };
-
   setup();
 });
