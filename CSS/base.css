@@ -23,6 +23,8 @@ body {
   background-color: #f9f5ea;
 }
 .container {
+  max-width: 1200px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
