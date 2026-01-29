@@ -31,10 +31,7 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 30px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 117px;
 }
 .nickname-text {
@@ -42,7 +39,6 @@ body {
 }
 /* 날짜만 작게 조절 */
 .greet-text span:last-child {
-  /* font-size: 16px; */
   font-weight: 400;
   margin-top: 5px;
 }
@@ -50,10 +46,7 @@ body {
   width: 40px;
   height: 40px;
   cursor: pointer;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 50%;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
 }
 .greet-text {
   display: flex;
@@ -73,10 +66,7 @@ body {
   justify-content: center;
   align-items: center;
   flex: 1;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 117px;
   font-family: "chonburi";
   font-size: 60px;
@@ -99,10 +89,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 10px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 100px;
   font-family: "chonburi";
   font-size: 20px;
@@ -118,10 +105,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   font-family: "Pretendard";
   font-size: 20px;
 }
@@ -139,10 +123,7 @@ body {
   flex: 1;
   min-width: 250px;
   min-height: 45px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   font-family: "Pretendard";
 }
 .period {
@@ -150,10 +131,7 @@ body {
   flex: 1;
   min-width: 130px;
   min-height: 45px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   font-family: "Pretendard";
 }
 .importance {
@@ -161,10 +139,7 @@ body {
   flex: 1;
   min-width: 130px;
   min-height: 45px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   font-family: "Pretendard";
 }
 .sorting {
@@ -172,10 +147,7 @@ body {
   flex: 1;
   min-width: 130px;
   min-height: 45px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
 }
 .sorting-btn {
   flex: 1;
@@ -196,11 +168,7 @@ body {
   min-width: 351px;
   min-height: 45px;
   cursor: pointer;
-  /* background-color: #0c0c0c; */
-  /* border: 1px solid #555555; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
-  /* color: #fafafa; */
 }
 .main-wrap {
   display: grid;
@@ -224,11 +192,7 @@ body {
   min-width: 120px;
   min-height: 30px;
   cursor: pointer;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
-  /* color: red; */
 }
 .boards {
   display: grid;
@@ -241,10 +205,7 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 100%;
 }
 .board-text {
@@ -258,20 +219,14 @@ body {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 100%;
 }
 .done-board {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
   border-radius: 16px;
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   height: 100%;
 }
 .board-count {
@@ -281,9 +236,6 @@ body {
   width: 30px;
   height: 30px;
   font-family: "chonburi";
-  /* background-color: #fafafa; */
-  /* border: 1px solid #d9cebb; */
-  /* box-shadow: 1px 1px 1px 1px #d9cebb; */
   border-radius: 50%;
 }
 .line {
