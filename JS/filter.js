@@ -12,17 +12,6 @@ let filterValue = {
   keyword: "",
   sort: "asc",
 };
-// 스티커 로컬 스토리지
-function saveSticker() {
-  localStorage.setItem("flowdash-sticker", JSON.stringify(filterValue));
-}
-function loadSticker() {
-  const saved = localStorage.getItem("flowdash-sticker");
-  if (!saved) return;
-
-  filterValue = JSON.parse(saved);
-  renderSticker();
-}
 // 필터 스티커 생성
 function createSticker(text) {
   const btn = document.createElement("button");
@@ -51,7 +40,7 @@ function renderSticker() {
 // 스티커 한글로 나오게
 function stickerDateText(value) {
   if (value === "today") return "오늘";
-  else if (value === "sevendays") return "7일 전";
+  else if (value === "sevendays") return "최근 7일";
   else return "전체";
 }
 function stickerPriorityText(value) {
@@ -74,7 +63,7 @@ function dateFilter(todos, filterValue) {
     if (filterValue === "today") {
       return todoDate >= todayStart;
     } else if (filterValue === "sevendays") {
-      const sevenDaysAgo = todayStart - 7 * 24 * 60 * 60 * 1000;
+      const sevenDaysAgo = todayStart - 6 * 24 * 60 * 60 * 1000;
       return todoDate >= sevenDaysAgo;
     }
     return true;
