@@ -141,6 +141,7 @@ flowdash/
 
 ## 9. 실행 방법
 Live Server 실행 또는 index.html 직접 실행
+
 ---
 
 ## 10. 결론
