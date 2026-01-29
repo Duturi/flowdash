@@ -107,6 +107,7 @@ function render(list) {
       doingCountNum++;
     } else if (todo.status === "done") {
       doneBoard?.appendChild(li);
+      li.classList.toggle("opacitiy");
       doneCountNum++;
     }
   });
