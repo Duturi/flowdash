@@ -60,7 +60,59 @@
     grid-column: 1/3;
   }
 }
-@media (max-width: 767px) {
+@media (min-width: 320px) and (max-width: 767px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 15px;
+    max-width: 767px;
+  }
+  .timer-box {
+    width: 100%;
+    display: flex;
+    gap: 5px;
+  }
+
+  .timer-box .time-box {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1/ 1;
+    font-size: 40px;
+  }
+
+  .category-box,
+  .filter-box,
+  .main-wrap,
+  .boards {
+    width: 100%;
+    display: block;
+  }
+
+  .category,
+  .todo-search,
+  .period,
+  .importance,
+  .sorting-btn,
+  .add-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin: 5px 0;
+  }
+
+  .boards {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .todo-board,
+  .in-progress-board,
+  .done-board {
+    width: 100%;
+    min-height: auto;
+  }
+
   .greet-box {
     font-size: 20px;
   }
