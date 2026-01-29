@@ -88,7 +88,13 @@ function render(list) {
     <h3 class="todo-title">${todo.title}</h3>
       <div class="todo-item-desc">${todo.content}</div>
       <small style="color: #5f6f81; font-size: 0.8rem;">
-      ${todo.updatedAt ? ` ${todo.updatedAt}` : todo.createdAt}
+      ${
+        todo.completedAt
+          ? `완료 : ${todo.completedAt}`
+          : todo.updatedAt
+            ? `수정 : ${todo.updatedAt}`
+            : `생성 : ${todo.createdAt}`
+      }
       </small>
 
         </div>
@@ -184,8 +190,8 @@ function addTodo() {
     content: desc,
     status: statusValue,
     priority: selectedPriority,
-    createdAt: Date.now(),
-    updatedAt: number,
+    createdAt: number,
+    updatedAt: null,
     completedAt: null,
     keyword: "",
   };
@@ -258,7 +264,7 @@ const sortBtn = document.querySelector("#sort-asc-btn");
 const sortText = document.querySelector(".sorting-btn");
 
 let ascending = true;
-sortBtn.onclick = () => {
+sortBtn.addEventListener("click", () => {
   ascending = !ascending;
 
   todos.sort((a, b) =>
@@ -271,7 +277,7 @@ sortBtn.onclick = () => {
   console.log(
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );
-};
+});
 
 // 수정 모달
 const boards = document.querySelector(".boards");
@@ -341,6 +347,36 @@ changeModalSave.addEventListener("click", (e) => {
     minute: "2-digit",
     hour12: false,
   });
+  // 완료 시간
+  const nowTime = new Date().toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  });
+
+  const statusValue = todoModalStatus.value;
+
+  todos = todos.map((todo) => {
+    if (todo.id === currentEditTodoId) {
+      return {
+        ...todo,
+        title: changeModalTitle.value,
+        content: changeModalDesc.value,
+        status: statusValue,
+        priority: selectedPriority,
+        completedAt: statusValue === "done" ? nowTime : null,
+        updatedAt: nowTime,
+      };
+    }
+    return todo;
+  });
+
+  saveTodos(TODO_KEY);
+
+  if (typeof applyFilter === "function") applyFilter();
 
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
   applyFilter();
