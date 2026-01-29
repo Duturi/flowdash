@@ -17,6 +17,7 @@ const deleteModal = document.querySelector("#delete-modal");
 const deleteBtnClear = document.querySelector("#delete-btn-clear");
 const deleteBtnClose = document.querySelector("#delete-btn-close");
 
+let filteredTodos = [];
 const TODO_KEY = "flowdash-todos";
 let todos = [];
 
@@ -42,7 +43,8 @@ priorityBtns.forEach((btn) => {
   });
 });
 
-function render() {
+function render(list) {
+  if (!Array.isArray(list)) return;
   const todoBoard = document.querySelector(".todo-board .todo-list-container");
   const doingBoard = document.querySelector(
     ".in-progress-board .todo-list-container",
@@ -58,7 +60,7 @@ function render() {
   let doneCountNum = 0;
   let totalTasksCountNum = 0;
 
-  todos.forEach((todo, index) => {
+  list.forEach((todo) => {
     const li = document.createElement("li");
     li.className = "todo-item";
     li.dataset.id = todo.id;
@@ -134,7 +136,7 @@ function render() {
 
   achievementValue();
 
-  console.log(`[Render] 현재 목록(${todos.length}개):`, todos);
+  console.log(`[Render] 현재 목록(${todos.length}개):`, list);
 }
 function openModal() {
   todoModal.style.display = "flex";
@@ -190,14 +192,16 @@ function addTodo() {
   todos.push(newTodo);
 
   saveTodos();
-  render();
+  applyFilter();
+  render(filteredTodos);
   closeModal();
 }
 
 function deleteTodo(index) {
   todos.splice(index, 1);
   saveTodos();
-  render();
+  applyFilter();
+  render(filteredTodos);
 }
 
 addBtn.addEventListener("click", (e) => {
@@ -214,7 +218,8 @@ closeBtn.addEventListener("click", closeModal);
 
 document.addEventListener("DOMContentLoaded", () => {
   todos = loadTodos();
-  render();
+  applyFilter();
+  render(filteredTodos);
 });
 // 초기화 버튼
 const resetBtn = document.querySelector("#resetBtn");
@@ -224,7 +229,18 @@ const closeResetBtn = document.querySelector("#reset-btn-close");
 
 function clearAllData() {
   todos = [];
+  filteredTodos = [];
+  filterValue = {
+    date: null,
+    priority: null,
+    importance: null,
+    keyword: "",
+    sort: "asc",
+  };
   localStorage.removeItem(TODO_KEY);
+  renderSticker();
+  render(filteredTodos);
+  closeModal();
   resetModal.style.display = "none";
   console.log("[Clear] 전체 삭제됨");
 }
@@ -236,7 +252,6 @@ closeResetBtn.addEventListener("click", () => {
   resetModal.style.display = "none";
 });
 clearBtn.addEventListener("click", clearAllData);
-render();
 
 // 오름차순, 내림차순 정렬
 const sortBtn = document.querySelector("#sort-asc-btn");
@@ -250,8 +265,9 @@ sortBtn.onclick = () => {
     ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title),
   );
   sortText.textContent = ascending ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
-
-  render();
+  applyFilter();
+  render(filteredTodos);
+  closeModal();
   console.log(
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );
@@ -328,7 +344,8 @@ changeModalSave.addEventListener("click", (e) => {
 
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
 
-  render();
+  render(filteredTodos);
+  closeModal();
   changeModal.style.display = "none";
   currentEditTodoId = null;
 });
@@ -351,7 +368,8 @@ document.addEventListener("click", (e) => {
 deleteBtnClear.addEventListener("click", () => {
   todos = todos.filter((t) => t.id !== deleteTodoId);
   saveTodos(TODO_KEY);
-  render();
+  render(filteredTodos);
+  closeModal();
   deleteModal.style.display = "none";
 });
 

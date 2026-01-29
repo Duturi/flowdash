@@ -1,6 +1,8 @@
 body {
   background-color: #f9f5ea;
   color: #0c0c0c;
+  background-image: url(https://i.ifh.cc/znx1hA.jpg);
+  background-repeat: no-repeat;
 }
 .light {
   background-color: #fafafa;
@@ -22,6 +24,8 @@ body {
 }
 .dark {
   background-color: #212121;
+  background-image: url(https://i.ifh.cc/Gp3ByT.jpg);
+  background-repeat: no-repeat;
   color: #fafafa;
 }
 .dark .light {
