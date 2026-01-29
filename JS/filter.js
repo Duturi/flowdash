@@ -63,15 +63,22 @@ function stickerPriorityText(value) {
 // 기간필터
 function dateFilter(todos, filterValue) {
   if (!filterValue || filterValue === "all") return todos;
-  const today = new Date();
-  const todayStart = today.setHours(0, 0, 0, 0);
 
-  if (filterValue === "today") {
-    return todos.filter((todo) => todo.createdAt >= todayStart);
-  } else if (filterValue === "sevendays") {
-    const sevenDaysAgo = new Date(todayStart);
-    return todos.filter((todo) => todo.createdAt <= sevenDaysAgo.getTime() - 6);
-  }
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const todayStart = today.getTime();
+
+  return todos.filter((todo) => {
+    const todoDate = new Date(todo.createdAt).getTime();
+
+    if (filterValue === "today") {
+      return todoDate >= todayStart;
+    } else if (filterValue === "sevendays") {
+      const sevenDaysAgo = todayStart - 7 * 24 * 60 * 60 * 1000;
+      return todoDate >= sevenDaysAgo;
+    }
+    return true;
+  });
 }
 
 // 상태필터
