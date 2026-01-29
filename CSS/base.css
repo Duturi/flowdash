@@ -1,0 +1,267 @@
+@font-face {
+  font-family: "Pretendard";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2")
+    format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  /* display: block; */
+  overflow-x: hidden;
+}
+body {
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #f9f5ea;
+}
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  box-sizing: border-box;
+}
+.header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.greet-box {
+  padding: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30px;
+  border-radius: 16px;
+  height: 117px;
+}
+.nickname-text {
+  font-size: 30px;
+}
+/* 날짜만 작게 조절 */
+.greet-text span:last-child {
+  font-weight: 400;
+  margin-top: 5px;
+}
+.theme-btn {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.greet-text {
+  display: flex;
+  flex-direction: column;
+  font-family: "Pretendard";
+  gap: 5px;
+}
+.today-date {
+  font-size: 20px;
+}
+.timer-box {
+  display: flex;
+  gap: 10px;
+}
+.time-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  border-radius: 16px;
+  height: 117px;
+  font-family: "chonburi";
+  font-size: 60px;
+}
+.colon {
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "chonburi";
+}
+.category-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
+  height: 100px;
+  font-family: "chonburi";
+  font-size: 20px;
+}
+.category-count {
+  font-size: 30px;
+}
+.filter-box {
+  padding: 20px 30px;
+  display: flex;
+  flex: 1;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  font-family: "Pretendard";
+  font-size: 20px;
+}
+.filter-text-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+  font-family: "Pretendard";
+  font-size: 20px;
+}
+.todo-search {
+  display: flex;
+  flex: 1;
+  min-width: 250px;
+  min-height: 45px;
+  border-radius: 16px;
+  font-family: "Pretendard";
+}
+.period {
+  display: flex;
+  flex: 1;
+  min-width: 130px;
+  min-height: 45px;
+  border-radius: 16px;
+  font-family: "Pretendard";
+}
+.importance {
+  display: flex;
+  flex: 1;
+  min-width: 130px;
+  min-height: 45px;
+  border-radius: 16px;
+  font-family: "Pretendard";
+}
+.sorting {
+  display: flex;
+  flex: 1;
+  min-width: 130px;
+  min-height: 45px;
+  border-radius: 16px;
+}
+.sorting-btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 130px;
+  min-height: 45px;
+  cursor: pointer;
+  border-radius: 16px;
+  font-size: 15px;
+}
+.add-btn {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  min-width: 351px;
+  min-height: 45px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+.main-wrap {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+.sticker-box {
+  height: 50px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-family: "Pretendard";
+  position: relative;
+}
+.reset {
+  position: absolute;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 120px;
+  min-height: 30px;
+  cursor: pointer;
+  border-radius: 16px;
+}
+.boards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  min-height: 400px;
+  font-family: "Pretendard";
+}
+.todo-board {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 16px;
+  height: 100%;
+}
+.board-text {
+  padding-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #d9cebb;
+  font-size: 20px;
+}
+.in-progress-board {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 16px;
+  height: 100%;
+}
+.done-board {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 16px;
+  height: 100%;
+}
+.board-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  font-family: "chonburi";
+  border-radius: 50%;
+}
+
+.footer {
+  width: 100%;
+  padding: 20px 0;
+  display: block;
+}
+.footer-comment {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #5f6f81;
+}
+.sticker-list {
+  display: flex;
+  gap: 20px;
+}

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./CSS/reset.css" />
+    <link rel="stylesheet" href="./CSS/base.css" />
+    <link rel="stylesheet" href="./CSS/responsive.css" />
+    <link rel="stylesheet" href="./CSS/theme.css" />
+    <link rel="stylesheet" href="./CSS/todo-board.css" />
+    <link rel="stylesheet" href="./CSS/components.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chonburi&family=Newsreader:ital,opsz,wght@0,6..72,700;1,6..72,700&display=swap"
+      rel="stylesheet"
+    />
+    <title>TEAM2 TodoList</title>
+  </head>
+  <body>
+    <section class="container">
+      <section class="header">
+        <section class="greet-box light">
+          <div class="greet-text">
+            <div>
+              <span>OOO님 좋은 00이에요</span>
+            </div>
+            <span class="today-date"></span>
+          </div>
+          <button class="theme-btn light">💤</button>
+        </section>
+        <!-- greet-box -->
+        <section class="timer-box">
+          <div class="time-hour1 time-box light"></div>
+          <div class="time-hour2 time-box light"></div>
+          <div class="colon">:</div>
+          <div class="time-min1 time-box light"></div>
+          <div class="time-min2 time-box light"></div>
+        </section>
+        <!-- timer-box -->
+      </section>
+      <section class="category-box">
+        <div class="total-tasks category light">
+          <span>Total Tasks</span>
+          <span class="category-count-total-tasks category-count">0</span>
+        </div>
+        <div class="to-do category light">
+          <span>To Do</span>
+          <span class="category-count-to-do category-count">0</span>
+        </div>
+        <div class="in-progress category light">
+          <span>In Progress</span>
+          <span class="category-count-in-progress category-count">0</span>
+        </div>
+        <div class="done category light">
+          <span>Done</span>
+          <span class="category-count-done category-count">0</span>
+        </div>
+        <div class="achievement category light">
+          <span>Achievement</span>
+          <span class="category-count-achievement category-count">0</span>
+        </div>
+      </section>
+      <!-- category-box -->
+      <section class="main-wrap">
+        <section class="filter-box light">
+          <form class="filter-text-box">
+            <input
+              type="text"
+              class="todo-search light"
+              placeholder="할 일 검색..."
+            />
+
+            <label for="date"></label>
+            <select id="date" class="period filter light" name="date">
+              <option class="date-value-all" value="all" selected>
+                전체 기간
+              </option>
+              <option class="date-value-today" value="today">오늘</option>
+              <option class="date-value-7day" value="sevendays">
+                최근 7일
+              </option>
+            </select>
+
+            <label for="importance"></label>
+            <select
+              id="importance"
+              class="importance filter light"
+              name="importance"
+            >
+              <option value="all" selected>전체 : 우선순위</option>
+              <option value="high">높음</option>
+              <option value="mid">중간</option>
+              <option value="low">낮음</option>
+            </select>
+
+            <label name="sorting"></label>
+            <button type="button" id="sort-asc-btn" class="sorting-btn light">
+              <span class="sort-text">정렬 : ↑ 오름차순</span>
+            </button>
+
+            <button class="add-btn light-add-btn">
+              <sapn>+ 새 할 일</sapn>
+            </button>
+          </form>
+        </section>
+        <!-- filter-box -->
+        <section class="sticker-box">
+          <section class="sticker-list"></section>
+          <button id="resetBtn" class="reset light-reset">
+            <span>데이터 초기화</span>
+          </button>
+        </section>
+        <!-- sticker-box -->
+        <section class="boards">
+          <div class="todo-board light">
+            <div class="board-text">
+              <span>할 일</span>
+              <div class="count board-count-todo board-count">0</div>
+            </div>
+            <ul class="todo-list-container"></ul>
+          </div>
+          <div class="in-progress-board light">
+            <div class="board-text">
+              <span>진행 중</span>
+              <div class="count board-count-doing board-count">0</div>
+            </div>
+            <ul class="todo-list-container"></ul>
+          </div>
+          <div class="done-board light">
+            <div class="board-text">
+              <span>완료</span>
+              <div class="count board-count-done board-count">0</div>
+            </div>
+            <ul class="todo-list-container"></ul>
+          </div>
+        </section>
+        <!-- boards -->
+      </section>
+      <!-- main-wrap -->
+    </section>
+    <div class="footer">
+      <p class="footer-comment">&copy; 2026 FlowDash. All rights reserved.</p>
+    </div>
+    <!-- footer -->
+    <div id="todo-modal" class="modal-overlay">
+      <div class="modal-todo-content light">
+        <span class="todo-new-work">새 할 일</span>
+        <form class="modal-form">
+          <label id="title" class="title" id="title">제목*</label>
+          <input
+            name="title"
+            type="text"
+            id="todo-modal-title"
+            placeholder="무엇을 해야 하나요?"
+          />
+        </form>
+        <form class="modal-form">
+          <label id="content" class="content">내용</label>
+          <textarea
+            name="content"
+            id="todo-modal-desc"
+            placeholder="상세 내용을 입력하세요..."
+          ></textarea>
+        </form>
+        <div class="importance-btn-box">
+          <button class="importance-btn importance-first" value="high">
+            높음
+          </button>
+          <button class="importance-btn importance-second" value="mid">
+            중간
+          </button>
+          <button class="importance-btn importance-third" value="low">
+            낮음
+          </button>
+          <form>
+            <label for="status-modal"></label>
+            <select
+              id="todo-status-modal"
+              class="importance-modal light"
+              name="importance"
+            >
+              <option value="todo">할 일</option>
+              <option value="doing">진행 중</option>
+              <option value="done">완료</option>
+            </select>
+          </form>
+        </div>
+        <div class="todo-modal-buttons">
+          <button id="todo-btn-plus">추가</button>
+          <button id="todo-btn-close">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- todo-modal -->
+    <div id="reset-modal" class="modal-overlay">
+      <div class="modal-reset-content light">
+        <div class="reset-modal-text">
+          <h3>삭제 시 모든 정보가 삭제됩니다.</h3>
+          <h3>삭제 하시겠습니까?</h3>
+        </div>
+        <div class="reset-modal-buttons">
+          <button id="reset-btn-clear">삭제</button>
+          <button id="reset-btn-close">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- reset-modal -->
+    <div id="delete-modal" class="modal-overlay">
+      <div class="modal-reset-content modal-delete-content light">
+        <div class="reset-modal-text delete-modal-text">
+          <h3>이 할 일을 정말로 삭제하시겠습니까?</h3>
+          <h3>삭제된 할 일은 복구할 수 없습니다.</h3>
+        </div>
+        <div class="reset-modal-buttons delete-modal-buttons">
+          <button id="delete-btn-clear">삭제</button>
+          <button id="delete-btn-close">취소</button>
+        </div>
+      </div>
+    </div>
+    <!-- delete-modal -->
+    <div id="change-modal" class="modal-overlay">
+      <div class="modal-change-content light">
+        <span class="todo-change">할 일 수정</span>
+        <form class="modal-form">
+          <label id="title" class="title" id="title">제목*</label>
+          <input name="title" type="text" id="change-modal-title" />
+        </form>
+        <form class="modal-form">
+          <label id="content" class="content">내용</label>
+          <textarea name="content" id="change-modal-desc"></textarea>
+        </form>
+        <div class="importance-btn-box">
+          <button class="importance-btn importance-first" data-value="high">
+            높음
+          </button>
+          <button class="importance-btn importance-second" data-value="mid">
+            중간
+          </button>
+          <button class="importance-btn importance-third" data-value="low">
+            낮음
+          </button>
+          <form>
+            <label for="status-modal"></label>
+            <select
+              id="status-modal"
+              class="status-modal light"
+              name="importance"
+            >
+              <option value="todo">할 일</option>
+              <option value="doing">진행 중</option>
+              <option value="done">완료</option>
+            </select>
+          </form>
+        </div>
+        <div class="change-modal-btn-box">
+          <button class="change-modal-cancle light">취소</button>
+          <button type="button" class="change-modal-save">저장하기</button>
+        </div>
+      </div>
+    </div>
+    <!-- change-modal 할 일 수정 modal -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        function updateClock() {
+          const now = new Date();
+
+          const hours = String(now.getHours()).padStart(2, "0");
+          const minutes = String(now.getMinutes()).padStart(2, "0");
+
+          document.querySelector(".time-hour1").textContent = hours[0];
+          document.querySelector(".time-hour2").textContent = hours[1];
+          document.querySelector(".time-min1").textContent = minutes[0];
+          document.querySelector(".time-min2").textContent = minutes[1];
+        }
+        updateClock();
+
+        setInterval(updateClock, 1000);
+      });
+    </script>
+    <script src="./JS/storages.js" defer></script>
+    <script src="./JS/todo-board.js" defer></script>
+    <script src="./JS/nickname.js" defer></script>
+    <script src="./JS/filter.js" defer></script>
+    <script src="./JS/modal.js" defer></script>
+  </body>
+</html>
