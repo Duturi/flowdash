@@ -53,6 +53,19 @@ flowdash/
    ├─ filter.js
    ├─ main.js
    ├─ storages.js
-   └─  todo-board.js
+   └─ todo-board.js
 ```
+### 4-2. 모듈 책임 분리
+- filter.js:
+- main.js:
+- storages.js:
+- todo-board.js:
+
+### 4-3. 데이터 흐름
+User Action
+
+---
+
+## 5. 핵심 설계 결정 사항
+
    
