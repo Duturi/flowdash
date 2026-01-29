@@ -12,7 +12,7 @@ let filterValue = {
   keyword: "",
   sort: "asc",
 };
-
+// 스티커 로컬 스토리지
 function saveSticker() {
   localStorage.setItem("flowdash-sticker", JSON.stringify(filterValue));
 }
@@ -22,9 +22,8 @@ function loadSticker() {
 
   filterValue = JSON.parse(saved);
   renderSticker();
-  // updateSortUi();
 }
-
+// 필터 스티커 생성
 function createSticker(text) {
   const btn = document.createElement("button");
   btn.className = "filter-sticker display-flex";
@@ -35,19 +34,31 @@ function createSticker(text) {
   btn.appendChild(span);
   stickerlist.appendChild(btn);
 }
-
+// 필터 스터커 렌더
 function renderSticker() {
   stickerlist.innerHTML = "";
   if (filterValue.date) {
-    createSticker(filterValue.date);
+    createSticker(stickerDateText(filterValue.date));
   }
 
   if (filterValue.priority) {
-    createSticker(filterValue.priority);
+    createSticker(stickerPriorityText(filterValue.priority));
   }
   if (filterValue.keyword) {
     createSticker(filterValue.keyword);
   }
+}
+// 스티커 한글로 나오게
+function stickerDateText(value) {
+  if (value === "today") return "오늘";
+  else if (value === "sevendays") return "7일 전";
+  else return "전체";
+}
+function stickerPriorityText(value) {
+  if (value === "high") return "높음";
+  else if (value === "mid") return "중간";
+  else if (value === "low") return "낮음";
+  else return "전체 : 우선순위";
 }
 // 기간필터
 function dateFilter(todos, filterValue) {
@@ -59,7 +70,7 @@ function dateFilter(todos, filterValue) {
     return todos.filter((todo) => todo.createdAt >= todayStart);
   } else if (filterValue === "sevendays") {
     const sevenDaysAgo = new Date(todayStart);
-    return todos.filter((todo) => todo.createdAt >= sevenDaysAgo - 6);
+    return todos.filter((todo) => todo.createdAt <= sevenDaysAgo.getTime() - 6);
   }
 }
 
@@ -144,9 +155,5 @@ function applyFilter() {
   result = sortFilter(result, filterValue.sort);
   result = searchFilter(result, filterValue.keyword);
   filteredTodos = result;
-}
-function updateView() {
-  applyFilter();
-  render(filteredTodos);
 }
 loadSticker();

@@ -73,7 +73,9 @@
 
             <label for="date"></label>
             <select id="date" class="period filter light" name="date">
-              <option class="date-value-all" value="all" selected>전체</option>
+              <option class="date-value-all" value="all" selected>
+                전체 기간
+              </option>
               <option class="date-value-today" value="today">오늘</option>
               <option class="date-value-7day" value="sevendays">7일 전</option>
             </select>
@@ -84,7 +86,7 @@
               class="importance filter light"
               name="importance"
             >
-              <option value="all" selected>전체 : 우선순</option>
+              <option value="all" selected>전체 : 우선순위</option>
               <option value="high">높음</option>
               <option value="mid">중간</option>
               <option value="low">낮음</option>
@@ -145,11 +147,20 @@
         <span class="todo-new-work">새 할 일</span>
         <form class="modal-form">
           <label id="title" class="title" id="title">제목*</label>
-          <input name="title" type="text" id="todo-modal-title" />
+          <input
+            name="title"
+            type="text"
+            id="todo-modal-title"
+            placeholder="무엇을 해야 하나요?"
+          />
         </form>
         <form class="modal-form">
           <label id="content" class="content">내용</label>
-          <textarea name="content" id="todo-modal-desc"></textarea>
+          <textarea
+            name="content"
+            id="todo-modal-desc"
+            placeholder="상세 내용을 입력하세요..."
+          ></textarea>
         </form>
         <div class="importance-btn-box">
           <button class="importance-btn importance-first" value="high">

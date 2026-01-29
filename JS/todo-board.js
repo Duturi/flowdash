@@ -17,9 +17,9 @@ const deleteModal = document.querySelector("#delete-modal");
 const deleteBtnClear = document.querySelector("#delete-btn-clear");
 const deleteBtnClose = document.querySelector("#delete-btn-close");
 
-let filteredTodos = [];
 const TODO_KEY = "flowdash-todos";
 let todos = [];
+let filteredTodos = [];
 
 function loadTodos() {
   const savedTodos = localStorage.getItem(TODO_KEY);
@@ -343,7 +343,7 @@ changeModalSave.addEventListener("click", (e) => {
   });
 
   localStorage.setItem(TODO_KEY, JSON.stringify(todos));
-
+  applyFilter();
   render(filteredTodos);
   closeModal();
   changeModal.style.display = "none";
@@ -368,6 +368,7 @@ document.addEventListener("click", (e) => {
 deleteBtnClear.addEventListener("click", () => {
   todos = todos.filter((t) => t.id !== deleteTodoId);
   saveTodos(TODO_KEY);
+  applyFilter();
   render(filteredTodos);
   closeModal();
   deleteModal.style.display = "none";
