@@ -1,1 +1,1 @@
-# Welcome to team *최우수*
+# Welcome to Team *최우수*
