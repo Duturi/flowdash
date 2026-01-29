@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const greetBox = document.querySelector(".greet-text");
   const [greetingEl, dateEl] = greetBox.querySelectorAll("span");
-
   // 시간대별 인사말 로직
   const getGreetingMessage = () => {
     const hour = new Date().getHours();

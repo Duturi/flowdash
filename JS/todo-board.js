@@ -2,7 +2,6 @@ const addBtn = document.querySelector(".add-btn");
 const todoModal = document.querySelector("#todo-modal");
 const plusBtn = document.querySelector("#todo-btn-plus");
 const closeBtn = document.querySelector("#todo-btn-close");
-
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
 const todoListContainer = document.querySelectorAll(".todo-list-container");
@@ -16,19 +15,25 @@ const countAchievement = document.querySelector(".category-count-achievement");
 const deleteModal = document.querySelector("#delete-modal");
 const deleteBtnClear = document.querySelector("#delete-btn-clear");
 const deleteBtnClose = document.querySelector("#delete-btn-close");
+const boards = document.querySelector(".boards");
+const todoItem = document.querySelector(".todo-item");
+const changeModal = document.querySelector("#change-modal");
+const changeModalTitle = document.querySelector("#change-modal-title");
+const changeModalDesc = document.querySelector("#change-modal-desc");
+const todoModalStatus = document.querySelector("#status-modal");
+const changeModalCancle = document.querySelector(".change-modal-cancle");
+const changeModalSave = document.querySelector(".change-modal-save");
+const resetBtn = document.querySelector("#resetBtn");
+const resetModal = document.querySelector("#reset-modal");
+const clearBtn = document.querySelector("#reset-btn-clear");
+const closeResetBtn = document.querySelector("#reset-btn-close");
+const sortBtn = document.querySelector("#sort-asc-btn");
+const sortText = document.querySelector(".sorting-btn");
 
 const TODO_KEY = "flowdash-todos";
 let todos = [];
 let filteredTodos = [];
 
-function loadTodos() {
-  const savedTodos = localStorage.getItem(TODO_KEY);
-  return savedTodos ? JSON.parse(savedTodos) : [];
-}
-
-function saveTodos() {
-  localStorage.setItem(TODO_KEY, JSON.stringify(todos));
-}
 //우선 순위 버튼
 const priorityBtns = document.querySelectorAll("#todo-modal .importance-btn");
 priorityBtns.forEach((btn) => {
@@ -107,6 +112,7 @@ function render(list) {
       doingCountNum++;
     } else if (todo.status === "done") {
       doneBoard?.appendChild(li);
+      li.classList.toggle("opacitiy");
       doneCountNum++;
     }
   });
@@ -162,7 +168,7 @@ function closeModal() {
   titleInput.value = "";
   descInput.value = "";
 }
-
+// 제목 미입력시
 function addTodo() {
   const title = titleInput.value.trim();
   const desc = descInput.value.trim();
@@ -228,11 +234,6 @@ document.addEventListener("DOMContentLoaded", () => {
   render(filteredTodos);
 });
 // 초기화 버튼
-const resetBtn = document.querySelector("#resetBtn");
-const resetModal = document.querySelector("#reset-modal");
-const clearBtn = document.querySelector("#reset-btn-clear");
-const closeResetBtn = document.querySelector("#reset-btn-close");
-
 function clearAllData() {
   todos = [];
   filteredTodos = [];
@@ -260,9 +261,6 @@ closeResetBtn.addEventListener("click", () => {
 clearBtn.addEventListener("click", clearAllData);
 
 // 오름차순, 내림차순 정렬
-const sortBtn = document.querySelector("#sort-asc-btn");
-const sortText = document.querySelector(".sorting-btn");
-
 let ascending = true;
 sortBtn.addEventListener("click", () => {
   ascending = !ascending;
@@ -277,139 +275,4 @@ sortBtn.addEventListener("click", () => {
   console.log(
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );
-});
-
-// 수정 모달
-const boards = document.querySelector(".boards");
-const todoItem = document.querySelector(".todo-item");
-const changeModal = document.querySelector("#change-modal");
-const changeModalTitle = document.querySelector("#change-modal-title");
-const changeModalDesc = document.querySelector("#change-modal-desc");
-const todoModalStatus = document.querySelector("#status-modal");
-const changeModalCancle = document.querySelector(".change-modal-cancle");
-const changeModalSave = document.querySelector(".change-modal-save");
-
-let currentEditTodoId = null;
-
-const changePriorityBtns = document.querySelectorAll(
-  "#change-modal .importance-btn",
-);
-changePriorityBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    e.preventDefault();
-    changePriorityBtns.forEach((btn) => btn.classList.remove("active"));
-    btn.classList.add("active");
-
-    const text = btn.innerText.trim();
-    if (text === "높음") selectedPriority = "high";
-    else if (text === "중간") selectedPriority = "mid";
-    else selectedPriority = "low";
-  });
-});
-
-todoListContainer.forEach((todoList) => {
-  todoList.addEventListener("click", (e) => {
-    const item = e.target.closest(".todo-item");
-    if (!item) return;
-
-    if (e.target.classList.contains("del-btn")) return;
-
-    const todoId = Number(item.dataset.id);
-    currentEditTodoId = todoId;
-
-    const todo = todos.find((t) => t.id === todoId);
-    if (!todo) return;
-
-    changeModalTitle.value = todo.title;
-    changeModalDesc.value = todo.content;
-    todoModalStatus.value = todo.status;
-    selectedPriority = todo.priority;
-
-    changeModal.style.display = "flex";
-  });
-});
-
-changeModalSave.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const todo = todos.find((t) => t.id === currentEditTodoId);
-  if (!todo) return;
-
-  todo.title = changeModalTitle.value.trim();
-  todo.content = changeModalDesc.value.trim();
-  todo.status = todoModalStatus.value;
-  todo.priority = selectedPriority;
-  todo.updatedAt = new Date().toLocaleString("ko-KR", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-  // 완료 시간
-  const nowTime = new Date().toLocaleString("ko-KR", {
-    year: "numeric",
-    month: "numeric",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-
-  const statusValue = todoModalStatus.value;
-
-  todos = todos.map((todo) => {
-    if (todo.id === currentEditTodoId) {
-      return {
-        ...todo,
-        title: changeModalTitle.value,
-        content: changeModalDesc.value,
-        status: statusValue,
-        priority: selectedPriority,
-        completedAt: statusValue === "done" ? nowTime : null,
-        updatedAt: nowTime,
-      };
-    }
-    return todo;
-  });
-
-  saveTodos(TODO_KEY);
-
-  if (typeof applyFilter === "function") applyFilter();
-
-  localStorage.setItem(TODO_KEY, JSON.stringify(todos));
-  applyFilter();
-  render(filteredTodos);
-  closeModal();
-  changeModal.style.display = "none";
-  currentEditTodoId = null;
-});
-changeModalCancle.addEventListener("click", () => {
-  changeModal.style.display = "none";
-  currentEditTodoId = null;
-});
-
-// 삭제 모달
-let deleteTodoId = null;
-
-document.addEventListener("click", (e) => {
-  const deleteBtn = e.target.closest(".del-btn");
-  if (!deleteBtn) return;
-  const todoId = Number(e.target.dataset.id);
-  deleteTodoId = todoId;
-  deleteModal.style.display = "flex";
-});
-
-deleteBtnClear.addEventListener("click", () => {
-  todos = todos.filter((t) => t.id !== deleteTodoId);
-  saveTodos(TODO_KEY);
-  applyFilter();
-  render(filteredTodos);
-  closeModal();
-  deleteModal.style.display = "none";
-});
-
-deleteBtnClose.addEventListener("click", () => {
-  deleteModal.style.display = "none";
 });
