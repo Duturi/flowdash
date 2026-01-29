@@ -1,3 +1,4 @@
+// 새 할 일 추가버튼
 const addBtn = document.querySelector(".add-btn");
 const todoModal = document.querySelector("#todo-modal");
 const plusBtn = document.querySelector("#todo-btn-plus");
@@ -5,6 +6,8 @@ const closeBtn = document.querySelector("#todo-btn-close");
 const titleInput = document.querySelector("#todo-modal-title");
 const descInput = document.querySelector("#todo-modal-desc");
 const todoListContainer = document.querySelectorAll(".todo-list-container");
+
+// 카테고리 카운트 증가
 const countTotalToDo = document.querySelector(".category-count-to-do");
 const countTotalInProgress = document.querySelector(
   ".category-count-in-progress",
@@ -12,21 +15,33 @@ const countTotalInProgress = document.querySelector(
 const countTotalDone = document.querySelector(".category-count-done");
 const countTotlaTasks = document.querySelector(".category-count-total-tasks");
 const countAchievement = document.querySelector(".category-count-achievement");
+
+// 개별 삭제
 const deleteModal = document.querySelector("#delete-modal");
 const deleteBtnClear = document.querySelector("#delete-btn-clear");
 const deleteBtnClose = document.querySelector("#delete-btn-close");
+
+// board, todo
 const boards = document.querySelector(".boards");
 const todoItem = document.querySelector(".todo-item");
+
+// 할 일 수정
 const changeModal = document.querySelector("#change-modal");
 const changeModalTitle = document.querySelector("#change-modal-title");
 const changeModalDesc = document.querySelector("#change-modal-desc");
-const todoModalStatus = document.querySelector("#status-modal");
 const changeModalCancle = document.querySelector(".change-modal-cancle");
 const changeModalSave = document.querySelector(".change-modal-save");
+
+// todo status(상태)
+const todoModalStatus = document.querySelector("#status-modal");
+
+// 초기화 버튼
 const resetBtn = document.querySelector("#resetBtn");
 const resetModal = document.querySelector("#reset-modal");
 const clearBtn = document.querySelector("#reset-btn-clear");
 const closeResetBtn = document.querySelector("#reset-btn-close");
+
+// 정렬 버튼
 const sortBtn = document.querySelector("#sort-asc-btn");
 const sortText = document.querySelector(".sorting-btn");
 
@@ -131,7 +146,7 @@ function render(list) {
   // 카테고리 박스의 Done 카운트 숫자
   countTotalDone.innerText = doneCountNum;
 
-  // 카테고르 박스의 Total Tasks 카운트 숫자
+  // 카테고리 박스의 Total Tasks 카운트 숫자
   countTotlaTasks.innerText = todos.length;
 
   // 카테고리 박스의 achievement 카운트 숫자
