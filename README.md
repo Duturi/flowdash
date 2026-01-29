@@ -33,3 +33,26 @@ CRUD, 테마설정 및 UX요소를 포함하여, 팀 단위 협업을 통해 설
 1. 
 2.
 3.
+---
+
+## 4. 프로젝트 구조 및 아키텍처
+### 4-1. 디렉터리 구조
+---
+
+flowdash/
+├─ README.md
+├─ index.html
+├─ css/
+│  ├─ reset.css
+│  ├─ base.css
+│  ├─ components.css
+│  ├─ theme.css
+│  ├─ todo-board.css
+│  └─ responsive.css
+└─ js/
+   ├─ filter.js
+   ├─ main.js
+   ├─ storages.js
+   └─  todo-board.js
+---
+   
