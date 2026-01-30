@@ -64,7 +64,6 @@ priorityBtns.forEach((btn) => {
 });
 
 function render(list) {
-  if (!Array.isArray(list)) return;
   const todoBoard = document.querySelector(".todo-board .todo-list-container");
   const doingBoard = document.querySelector(
     ".in-progress-board .todo-list-container",
@@ -294,7 +293,6 @@ sortBtn.addEventListener("click", () => {
 
   applyFilter();
   render(filteredTodos);
-  closeModal();
   console.log(
     ascending ? "[Render] 목록 오름차순 정렬" : "[Render] 목록 내림차순 정렬",
   );

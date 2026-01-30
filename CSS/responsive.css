@@ -1,6 +1,10 @@
 @media (max-width: 1920px) {
+  .container {
+    width: 100%;
+    margin: 0 auto;
+  }
   .greet-box {
-    font-style: 30px;
+    font-size: 30px;
   }
   .timer-box {
     font-size: 60px;
@@ -10,6 +14,9 @@
   }
 }
 @media (max-width: 1199px) {
+  .container {
+    width: 100%;
+  }
   .greet-box {
     font-size: 25px;
   }
@@ -144,9 +151,11 @@
     width: 100%;
   }
   .sorting-btn {
+    min-width: none;
     width: 100%;
   }
   .add-btn {
+    min-width: none;
     width: 100%;
   }
   .boards {

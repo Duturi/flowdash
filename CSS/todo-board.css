@@ -1,18 +1,13 @@
-.todo-board {
-  display: flex;
-  flex-direction: column;
-}
 .todo-list-container {
-  margin: 10px 0px 0px 10px;
+  margin: 10px 0px 0px 0px;
   padding: 10px 12px;
   border-radius: 6px;
   margin-bottom: 8px;
 }
 .todo-item {
   display: flex;
-  min-width: 100%;
+  min-width: auto;
   min-height: 200px;
-  background-color: #fafafa;
   color: #0c0c0c;
   border-radius: 30px;
   padding: 20px;

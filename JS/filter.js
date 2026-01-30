@@ -110,7 +110,6 @@ function sortFilter(todos, filterValue) {
     [...todos].sort((a, b) => b.title.localeCompare(a.title));
   }
   return todos;
-  // 함수 내용물 받아서 넘겨주는 함수 자리
 }
 // 검색어필터;
 function searchFilter(todos, keyword) {
