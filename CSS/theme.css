@@ -102,12 +102,37 @@ body {
   color: #fafafa;
 }
 .dark .todo-item {
-  background-color: #0c0c0c;
+  background-color: #222222;
+  background-blend-mode: multiply;
+  background-blend-mode: multiply;
   border: 1px solid #555555;
   color: #fafafa;
+}
+.todo-item {
+  background-color: #f9f5ea;
+  background-blend-mode: multiply;
+  background-blend-mode: multiply;
 }
 .dark .display-flex {
   background-color: #0c0c0c;
   border: 1px solid #555555;
   color: #fafafa;
+}
+.todo-board {
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+}
+.in-progress-board {
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+}
+.done-board {
+  background-image: linear-gradient(-20deg, #e9defa 0%, #fbfcdb 100%);
+}
+.dark .todo-board {
+  background-image: linear-gradient(to top, #313131 0%, #0c0c0c 100%);
+}
+.dark .in-progress-board {
+  background-image: linear-gradient(to top, #313131 0%, #0c0c0c 100%);
+}
+.dark .done-board {
+  background-image: linear-gradient(to top, #313131 0%, #0c0c0c 100%);
 }
