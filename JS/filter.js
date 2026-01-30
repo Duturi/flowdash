@@ -36,6 +36,12 @@ function renderSticker() {
   if (filterValue.keyword) {
     createSticker(filterValue.keyword);
   }
+  if (filterValue.sort === "ascending" || filterValue.sort === "descending") {
+    const sortSticker = stickerSortText(filterValue.sort);
+    if (sortSticker) {
+      createSticker(sortSticker);
+    }
+  }
 }
 // 스티커 한글로 나오게
 function stickerDateText(value) {
@@ -48,6 +54,10 @@ function stickerPriorityText(value) {
   else if (value === "mid") return "중간";
   else if (value === "low") return "낮음";
   else return "전체 : 우선순위";
+}
+function stickerSortText(value) {
+  if (value === "ascending") return "정렬 : 오름차순";
+  else if (value === "descending") return "정렬 : 내림차순";
 }
 // 기간필터
 function dateFilter(todos, filterValue) {
