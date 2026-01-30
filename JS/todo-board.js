@@ -107,15 +107,19 @@ function render(list) {
     </div>
     <h3 class="todo-title">${todo.title}</h3>
       <div class="todo-item-desc">${todo.content}</div>
-      <small style="color: #5f6f81; font-size: 0.8rem;">
-      ${
-        todo.completedAt
-          ? `완료 : ${todo.completedAt}`
-          : todo.updatedAt
-            ? `수정 : ${todo.updatedAt}`
-            : `생성 : ${todo.createdAt}`
-      }
-      </small>
+      
+<small style="color: #5f6f81; font-size: 0.8rem; line-height: 1.4; display: block; text-align: right;">
+
+  <div>생성 : ${todo.createdAt}</div>
+
+  ${
+    todo.completedAt
+      ? `<div>완료 : ${todo.completedAt}</div>`
+      : todo.updatedAt
+        ? `<div>수정 : ${todo.updatedAt}</div>`
+        : ""
+  }
+</small>
 
         </div>
         `;
@@ -213,7 +217,7 @@ function addTodo() {
     priority: selectedPriority,
     createdAt: number,
     updatedAt: null,
-    completedAt: null,
+    completedAt: statusValue === "done" ? number : null,
     keyword: "",
   };
   todos.push(newTodo);
@@ -279,11 +283,15 @@ clearBtn.addEventListener("click", clearAllData);
 let ascending = true;
 sortBtn.addEventListener("click", () => {
   ascending = !ascending;
+  filterValue.sort = ascending ? "ascending" : "descending";
 
   todos.sort((a, b) =>
     ascending ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title),
   );
   sortText.textContent = ascending ? "정렬 : ↑ 오름차순" : "정렬 : ↓ 내림차순";
+
+  renderSticker();
+
   applyFilter();
   render(filteredTodos);
   closeModal();
